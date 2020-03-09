@@ -1,7 +1,7 @@
 {
-  "name": "mmdb",
+  "name": "mymoviedb-frontend",
   "version": "1.0.0",
-  "description": "MyMovieDb",
+  "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
