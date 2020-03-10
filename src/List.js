@@ -8,8 +8,8 @@ import "antd/dist/antd.css";
 
 function List() {
   const mylist = {
-    // url: "https://www.matthewhopps.com/api/list/me-my-list/",
-    url: "http://localhost:8000/api/list/me-my-list/",
+    url: "https://www.matthewhopps.com/api/list/me-my-list/",
+    // url: "http://localhost:8000/api/list/me-my-list/",
     path: "/list/me-my-list",
     name: "My List"
   };
