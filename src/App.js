@@ -79,8 +79,8 @@ export default function App() {
             <About />
           </Route>
           <Route path="/">
-            <Home />
-            {/* <List /> */}
+            {/* <Home /> */}
+            <List />
           </Route>
         </Switch>
       </div>
