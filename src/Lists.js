@@ -26,36 +26,25 @@ function Lists() {
 
   return (
     <div>
-      <Affix offsetTop={0}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center ",
-            padding: "5px 10px",
-            backgroundColor: "white"
-          }}
-        >
-          <p
-            style={{
-              fontSize: "1.25rem",
-              fontWeight: 600,
-              padding: 0,
-              margin: 0
-            }}
-          >
-            My List Name
-            {/* {mylist.name} - {data.movie_count} */}
-          </p>
-        </div>
-      </Affix>
-
+      <hr />
       <ul>
         <li>
           <Link to={`${match.url}/me-my-list`}>My List Test</Link>
         </li>
         <li>
-          <Link to={`${match.url}/`}>Others (not linked)</Link>
+          <Link to={`${match.url}/tmdb-popular`}>Popular</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/tmdb-top-rated`}>Top Rated</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/tmdb-now-playing`}>Now Playing</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}/tmdb-upcoming`}>Upcoming</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}`}>Others (not linked)</Link>
         </li>
       </ul>
 

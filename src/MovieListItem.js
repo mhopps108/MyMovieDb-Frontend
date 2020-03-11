@@ -82,7 +82,7 @@ function MovieListItem({ movie }) {
             <p style={{ margin: 0 }}>
               {imdb_rating_avg} / 10 ({imdb_rating_count} votes)
             </p>
-            <p style={{ margin: 0 }}>{genres.join(", ")}</p>
+            <p style={{ margin: 0 }}>{genres && genres.join(", ")}</p>
           </div>
         </div>
       </div>

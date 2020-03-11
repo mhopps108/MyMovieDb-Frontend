@@ -9,6 +9,7 @@ import {
   useParams
 } from "react-router-dom";
 
+import { Affix } from "antd";
 import { useDataApi } from "./useDataApi";
 import MovieListItem from "./MovieListItem";
 import "antd/dist/antd.css";
@@ -39,9 +40,32 @@ function List() {
 
   return (
     <div>
+      <Affix offsetTop={0}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center ",
+            padding: "5px 10px",
+            backgroundColor: "white"
+          }}
+        >
+          <p
+            style={{
+              fontSize: "1.25rem",
+              fontWeight: 600,
+              padding: 0,
+              margin: 0
+            }}
+          >
+            {listSlug}
+          </p>
+        </div>
+      </Affix>
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
-      {data &&
+      {!isLoading &&
+        data &&
         (data.movielistitems || []).map(movie => (
           <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
         ))}
