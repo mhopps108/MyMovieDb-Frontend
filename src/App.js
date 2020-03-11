@@ -12,6 +12,8 @@ import { List } from "./List";
 // import axios from "axios";
 // import { useState, useEffect, useReducer } from "react";
 
+// use relative urls instead of the full url for links
+
 export default function App() {
   const url = "http://matthewhopps.com/api/list/me-my-list/";
 

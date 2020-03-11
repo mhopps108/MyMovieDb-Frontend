@@ -16,6 +16,7 @@ function List() {
 
   const [state, setUrl] = useDataApi(mylist.url, []);
   const { data, isLoading, isError } = state;
+  const movies = data.movielistitems;
 
   // useEffect(() => {
   //   setUrl(mylist);
@@ -55,8 +56,10 @@ function List() {
       {isLoading ? (
         <p>Loading movies...</p>
       ) : (
-        <p>Movies</p>
-        // <MovieSectionList movies={movies} />
+        // <p>movie {data.movie_count}</p>
+        (data.movielistitems || []).map(movie => (
+          <p key={movie.movie.id}>{movie.movie.title}</p>
+        ))
       )}
     </div>
   );
