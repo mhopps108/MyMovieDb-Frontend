@@ -13,8 +13,8 @@ import { Drawer } from "antd";
 import { List } from "./List";
 import "antd/dist/antd.css";
 
-function ListsDrawer({ visible, setVisible }) {
-  let match = useRouteMatch();
+function ListsDrawer({ visible, setVisible, match }) {
+  // let match = useRouteMatch();
 
   useEffect(() => {
     console.log(`match - (Lists)`);
@@ -33,7 +33,7 @@ function ListsDrawer({ visible, setVisible }) {
         width={"250"}
       >
         <h4>{"TMDb List"}</h4>
-        <ul>
+        {/* <ul>
           <li>
             <Link to={`${match.url}/me-my-list`}>My List Test</Link>
           </li>
@@ -52,17 +52,17 @@ function ListsDrawer({ visible, setVisible }) {
           <li>
             <Link to={`${match.url}`}>Others (not linked)</Link>
           </li>
-        </ul>
+        </ul> */}
       </Drawer>
 
-      <Switch>
+      {/* <Switch>
         <Route path={`${match.path}/:listSlug`}>
           <List />
         </Route>
         <Route path={match.path}>
           <h3>Please select a list.</h3>
         </Route>
-      </Switch>
+      </Switch> */}
     </div>
   );
 }

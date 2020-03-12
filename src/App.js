@@ -8,13 +8,15 @@ import {
   useParams
 } from "react-router-dom";
 import { Button, Icon } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 import { Lists } from "./Lists";
-// import { ListsDrawer } from "./ListsDrawer";
+import { ListsDrawer } from "./ListsDrawer";
 
 // use relative urls instead of the full url for links
 
 export default function App() {
-  // const [listsDrawerVisible, setListsDrawerVisible] = useState(false);
+  const [listsDrawerVisible, setListsDrawerVisible] = useState(false);
+  // let match = useRouteMatch();
 
   return (
     <div className="App" style={{ maxWidth: "1000px" }}>
@@ -22,7 +24,7 @@ export default function App() {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          // alignItems: "center ",
+          alignItems: "center ",
           padding: "5px 10px",
           borderBottom: "1px solid #ccc",
           background: "#3f4c6b"
@@ -39,28 +41,41 @@ export default function App() {
             color: "rgba(255, 255, 255, 0.75)"
           }}
         >
-          {"A Movie Site"}
+          {"MyMovieDb"}
         </p>
 
         <Button
+          type="primary"
+          icon={
+            <MenuOutlined
+              style={{
+                fontSize: "1rem",
+                color: "#eee"
+              }}
+            />
+          }
           style={{ border: "none", padding: "8px", background: "none" }}
-          // onClick={() => setListsDrawerVisible(true)}
-        >
-          <Icon
-            type="menu"
-            style={{
+          onClick={() => setListsDrawerVisible(true)}
+        />
+        {/* style={{
               fontSize: "1rem",
               color: "#eee"
-            }}
-          />
-        </Button>
+            }} */}
       </div>
-
-      {/* <ListsDrawer visible={listMenuVisible} setVisible={setListMenuVisible} /> */}
 
       <Router>
         <div>
-          <ul>
+          <ul
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center ",
+              listStyleType: "none",
+              padding: "0px 5px",
+              margin: "0px",
+              backgroundColor: "white"
+            }}
+          >
             <li>
               <Link to="/lists">Lists</Link>
             </li>
@@ -84,6 +99,11 @@ export default function App() {
             </Route>
           </Switch>
         </div>
+        <ListsDrawer
+          // match={match}
+          visible={listsDrawerVisible}
+          setVisible={setListsDrawerVisible}
+        />
       </Router>
     </div>
   );

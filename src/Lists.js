@@ -25,25 +25,36 @@ function Lists() {
   }, [match]);
 
   return (
-    <div>
-      <hr />
-      <ul>
-        <li>
+    <div style={{ borderBottom: "solid black 1px" }}>
+      {/* <hr /> */}
+      <ul
+        style={{
+          // display: "flex",
+          // justifyContent: "space-around",
+          // alignItems: "center ",
+          listStyleType: "none",
+          padding: "5px 5px",
+          backgroundColor: "white",
+          overflow: "auto",
+          whiteSpace: "nowrap"
+        }}
+      >
+        <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}/me-my-list`}>My List Test</Link>
         </li>
-        <li>
+        <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}/tmdb-popular`}>Popular</Link>
         </li>
-        <li>
+        <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}/tmdb-top-rated`}>Top Rated</Link>
         </li>
-        <li>
+        <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}/tmdb-now-playing`}>Now Playing</Link>
         </li>
-        <li>
+        <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}/tmdb-upcoming`}>Upcoming</Link>
         </li>
-        <li>
+        <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}`}>Others (not linked)</Link>
         </li>
       </ul>

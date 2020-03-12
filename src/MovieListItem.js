@@ -14,8 +14,8 @@ import { Card, Row, Col, Typography, Button } from "antd";
 // detail_url: "kingsman-the-secret-service-tt2802144"
 
 function MovieListItem({ movie }) {
-  console.log("a movie");
-  console.log(movie);
+  // console.log("a movie");
+  // console.log(movie);
 
   const {
     imdb_id,
