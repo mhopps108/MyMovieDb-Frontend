@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,39 +7,85 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import { Button, Icon } from "antd";
 import { Lists } from "./Lists";
+// import { ListsDrawer } from "./ListsDrawer";
 
 // use relative urls instead of the full url for links
 
 export default function App() {
-  return (
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/lists">Lists</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </ul>
+  // const [listsDrawerVisible, setListsDrawerVisible] = useState(false);
 
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/lists">
-            <Lists />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+  return (
+    <div className="App" style={{ maxWidth: "1000px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          // alignItems: "center ",
+          padding: "5px 10px",
+          borderBottom: "1px solid #ccc",
+          background: "#3f4c6b"
+          // background: "#778899"
+          // color: "#ddd"
+        }}
+      >
+        <p
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: 600,
+            padding: 0,
+            margin: 0,
+            color: "rgba(255, 255, 255, 0.75)"
+          }}
+        >
+          {"A Movie Site"}
+        </p>
+
+        <Button
+          style={{ border: "none", padding: "8px", background: "none" }}
+          // onClick={() => setListsDrawerVisible(true)}
+        >
+          <Icon
+            type="menu"
+            style={{
+              fontSize: "1rem",
+              color: "#eee"
+            }}
+          />
+        </Button>
       </div>
-    </Router>
+
+      {/* <ListsDrawer visible={listMenuVisible} setVisible={setListMenuVisible} /> */}
+
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/lists">Lists</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/lists">
+              <Lists />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </div>
   );
 }
 
