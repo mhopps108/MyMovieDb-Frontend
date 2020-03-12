@@ -38,7 +38,7 @@ export default function App() {
             fontWeight: 600,
             padding: 0,
             margin: 0,
-            color: "rgba(255, 255, 255, 0.75)"
+            color: "rgba(255, 255, 255, 0.7)"
           }}
         >
           {"MyMovieDb"}
@@ -49,18 +49,14 @@ export default function App() {
           icon={
             <MenuOutlined
               style={{
-                fontSize: "1rem",
+                fontSize: "1.1rem",
                 color: "#eee"
               }}
             />
           }
-          style={{ border: "none", padding: "8px", background: "none" }}
+          style={{ border: "none", background: "none" }}
           onClick={() => setListsDrawerVisible(true)}
         />
-        {/* style={{
-              fontSize: "1rem",
-              color: "#eee"
-            }} */}
       </div>
 
       <Router>

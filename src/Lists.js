@@ -16,6 +16,12 @@ import { Affix } from "antd";
 import { List } from "./List";
 import "antd/dist/antd.css";
 
+const linkStyle = {
+  color: "#3f4c6b"
+  // border: "solid black 1px"
+  // padding: "2px 5px"
+};
+
 function Lists() {
   let match = useRouteMatch();
 
@@ -39,23 +45,40 @@ function Lists() {
           whiteSpace: "nowrap"
         }}
       >
-        <li style={{ display: "inline-block", padding: "0px 10px" }}>
-          <Link to={`${match.url}/me-my-list`}>My List Test</Link>
+        <li
+          style={{
+            display: "inline-block",
+            padding: "0px 10px"
+          }}
+        >
+          <Link to={`${match.url}/me-my-list`} style={linkStyle}>
+            My List Test
+          </Link>
         </li>
         <li style={{ display: "inline-block", padding: "0px 10px" }}>
-          <Link to={`${match.url}/tmdb-popular`}>Popular</Link>
+          <Link to={`${match.url}/tmdb-popular`} style={linkStyle}>
+            Popular
+          </Link>
         </li>
         <li style={{ display: "inline-block", padding: "0px 10px" }}>
-          <Link to={`${match.url}/tmdb-top-rated`}>Top Rated</Link>
+          <Link to={`${match.url}/tmdb-top-rated`} style={linkStyle}>
+            Top Rated
+          </Link>
         </li>
         <li style={{ display: "inline-block", padding: "0px 10px" }}>
-          <Link to={`${match.url}/tmdb-now-playing`}>Now Playing</Link>
+          <Link to={`${match.url}/tmdb-now-playing`} style={linkStyle}>
+            Now Playing
+          </Link>
         </li>
         <li style={{ display: "inline-block", padding: "0px 10px" }}>
-          <Link to={`${match.url}/tmdb-upcoming`}>Upcoming</Link>
+          <Link to={`${match.url}/tmdb-upcoming`} style={linkStyle}>
+            Upcoming
+          </Link>
         </li>
         <li style={{ display: "inline-block", padding: "0px 10px" }}>
-          <Link to={`${match.url}`}>Others (not linked)</Link>
+          <Link to={`${match.url}`} style={linkStyle}>
+            Others (not linked)
+          </Link>
         </li>
       </ul>
 
