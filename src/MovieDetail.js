@@ -9,7 +9,12 @@ import {
   useParams
 } from "react-router-dom";
 import { Affix, Row } from "antd";
-import { StarOutlined, CalendarOutlined } from "@ant-design/icons";
+import {
+  StarOutlined,
+  CalendarOutlined,
+  YoutubeOutlined,
+  HomeOutlined
+} from "@ant-design/icons";
 import { useDataApi } from "./useDataApi";
 import "antd/dist/antd.css";
 
@@ -22,40 +27,43 @@ function ExternalLinks({ data }) {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
+          alignItems: "center"
         }}
       >
         {imdb_id && (
           <a href={`https://www.imdb.com/title/${imdb_id}`} target={"_blank"}>
             <img
               src={
-                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/_-eJ-imdb-icon.jpg"
+                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/j2yP-imdb-icon.png"
               }
               style={{ height: "50px" }}
               alt="asdf"
             />
           </a>
-
-          // <a href={`https://www.imdb.com/title/${imdb_id}`} target={"_blank"}>
-          //   IMDb
-          // </a>
         )}
         {tmdb_id && (
           <a
             href={`https://www.themoviedb.com/movie/${tmdb_id}`}
             target={"_blank"}
           >
-            The Movie Db
+            <img
+              src={
+                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/ENPU-tmdb-icon.png"
+              }
+              style={{ height: "30px" }}
+              alt="asdf"
+            />
           </a>
         )}
         {homepage_url && (
           <a href={homepage_url} target={"_blank"}>
-            Movie Home
+            <HomeOutlined style={{ fontSize: "30px", color: "#333" }} />
           </a>
         )}
         {trailer_url && (
           <a href={trailer_url} target={"_blank"}>
-            Trailer
+            <YoutubeOutlined style={{ fontSize: "30px", color: "#333" }} />
           </a>
         )}
       </div>
