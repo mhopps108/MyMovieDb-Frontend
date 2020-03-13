@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Typography, Button } from "antd";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 // imdb_id: "tt2802144"
 // title: "Kingsman: The Secret Service"
@@ -74,7 +82,9 @@ function MovieListItem({ movie }) {
           /> */}
         </div>
         <div style={{ paddingLeft: "1rem", paddingTop: "0.25rem" }}>
-          <h5 style={{ fontSize: "1rem" }}>{title}</h5>
+          <Link to={`/movie/${imdb_id}`}>
+            <h5 style={{ fontSize: "1rem" }}>{title}</h5>
+          </Link>
           <div>
             <p style={{ margin: 0 }}>
               {year} • {runtime} • {certification}

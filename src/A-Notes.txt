@@ -1,0 +1,8 @@
+
+# Endpoint Urls #
+/list
+/list/:listSlug
+/movie/:imdbId
+/search
+/discovery
+/release-dates/:type  -  type => theatrical/digital/bluray?

@@ -11,6 +11,7 @@ import { Button, Icon } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { Lists } from "./Lists";
 import { ListsDrawer } from "./ListsDrawer";
+import { MovieDetail } from "./MovieDetail";
 
 // use relative urls instead of the full url for links
 
@@ -89,6 +90,9 @@ export default function App() {
             </Route>
             <Route path="/lists">
               <Lists />
+            </Route>
+            <Route path="/movie/:imdbId">
+              <MovieDetail />
             </Route>
             <Route path="/">
               <Home />
