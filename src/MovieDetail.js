@@ -9,8 +9,88 @@ import {
   useParams
 } from "react-router-dom";
 import { Affix, Row } from "antd";
+import { StarOutlined, CalendarOutlined } from "@ant-design/icons";
 import { useDataApi } from "./useDataApi";
 import "antd/dist/antd.css";
+
+function ExternalLinks({ data }) {
+  const { imdb_id, tmdb_id, homepage_url, trailer_url } = data;
+
+  return (
+    <>
+      <h3>Links</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between"
+        }}
+      >
+        {imdb_id && (
+          <a href={`https://www.imdb.com/title/${imdb_id}`} target={"_blank"}>
+            <img
+              src={
+                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/_-eJ-imdb-icon.jpg"
+              }
+              style={{ height: "50px" }}
+              alt="asdf"
+            />
+          </a>
+
+          // <a href={`https://www.imdb.com/title/${imdb_id}`} target={"_blank"}>
+          //   IMDb
+          // </a>
+        )}
+        {tmdb_id && (
+          <a
+            href={`https://www.themoviedb.com/movie/${tmdb_id}`}
+            target={"_blank"}
+          >
+            The Movie Db
+          </a>
+        )}
+        {homepage_url && (
+          <a href={homepage_url} target={"_blank"}>
+            Movie Home
+          </a>
+        )}
+        {trailer_url && (
+          <a href={trailer_url} target={"_blank"}>
+            Trailer
+          </a>
+        )}
+      </div>
+    </>
+  );
+}
+
+function Ratings({ data }) {
+  const {
+    imdb_rating_avg,
+    imdb_rating_count,
+    tmdb_rating_avg,
+    tmdb_rating_count
+  } = data;
+  return (
+    <>
+      <h3>
+        <StarOutlined style={{ paddingRight: "3px" }} />
+        Ratings
+      </h3>
+      {imdb_rating_avg && (
+        <div>
+          IMDb: {imdb_rating_avg}{" "}
+          {imdb_rating_count && `(${imdb_rating_count} votes)`}
+        </div>
+      )}
+      {tmdb_rating_avg && (
+        <div>
+          TMDb: {tmdb_rating_avg}{" "}
+          {tmdb_rating_count && `(${tmdb_rating_count} votes)`}
+        </div>
+      )}
+    </>
+  );
+}
 
 function ReleaseDates({ data }) {
   const {
@@ -21,11 +101,40 @@ function ReleaseDates({ data }) {
   } = data;
   return (
     <>
-      <p>Release Dates</p>
-      {theatrical_release && <p>Theatrical: {theatrical_release}</p>}
-      {digital_release && <p>Digital: {digital_release}</p>}
-      {physical_release && <p>Physical: {physical_release}</p>}
-      {tv_release && <p>TV: {tv_release}</p>}
+      <h3>
+        <CalendarOutlined style={{ paddingRight: "3px" }} />
+        Release Dates
+      </h3>
+      {theatrical_release && <div>Theatrical: {theatrical_release}</div>}
+      {digital_release && <div>Digital: {digital_release}</div>}
+      {physical_release && <div>Physical: {physical_release}</div>}
+      {tv_release && <div>TV: {tv_release}</div>}
+    </>
+  );
+}
+
+function Overview({ data }) {
+  const { overview, tagline } = data;
+  return (
+    <>
+      <h3>Overview</h3>
+      {tagline && <div>tagline: {tagline}</div>}
+      {overview && <div>overview: {overview}</div>}
+    </>
+  );
+}
+
+function Basics({ data }) {
+  const { year, runtime, certification, genres, budget, revenue } = data;
+  return (
+    <>
+      <h3>Stuff</h3>
+      {year && <div>year: {year}</div>}
+      {runtime && <div>runtime: {runtime}</div>}
+      {certification && <div>certification: {certification}</div>}
+      {genres && <div>genres: {genres.join(", ")}</div>}
+      {budget && <div>budget: {budget}</div>}
+      {revenue && <div>revenue: {revenue}</div>}
     </>
   );
 }
@@ -100,9 +209,23 @@ function MovieDetail() {
                 </h1>
               </div>
             </div>
-            <div>
+            <div style={{ padding: "10px" }}>
+              <Basics data={data} />
+            </div>
+            <div style={{ padding: "10px" }}>
+              <Ratings data={data} />
+            </div>
+            <div style={{ padding: "10px" }}>
               <ReleaseDates data={data} />
             </div>
+            <div style={{ padding: "10px" }}>
+              <Overview data={data} />
+            </div>
+            <div style={{ padding: "10px" }}>
+              <ExternalLinks data={data} />
+            </div>
+
+            <hr />
             <p>MovieDetail - {imdbId}</p>
             <p>
               {mapObject(data, function(key, value) {
