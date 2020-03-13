@@ -1,0 +1,43 @@
+imdb_id: tt7975244
+tmdb_id: 512200
+slug: jumanji-the-next-level-tt7975244
+
+title: Jumanji: The Next Level
+year: 2019
+
+runtime: 123
+certification: PG-13
+genres: ActionAdventureComedyFantasy
+budget: 125000000
+revenue: 310830000
+
+# Ratings #
+imdb_rating_avg: 6.8
+imdb_rating_count: 95289
+tmdb_rating_count: 2227
+tmdb_rating_avg: 6.8
+
+is_english:
+spoken_languages: en-English
+
+tagline:
+overview: As the gang return to Jumanji to rescue one of their own, they discover that nothing is as they expect. The players will have to brave parts unknown and unexplored in order to escape the world’s most dangerous game.
+
+# Release-Dates #
+theatrical_release: 2019-12-13
+digital_release: 2020-03-03
+physical_release: 2020-03-17
+tv_release:
+
+
+# Links #
+imdb_url:
+tmdb_url:
+trailer_url: https://www.youtube.com/watch?v=rBxcF-r9Ibs
+homepage_url: http://jumanjimovie.com
+
+# Images #
+poster_url: https://image.tmdb.org/t/p/w154/bB42KDdfWkOvmzmYkmK58ZlCa9P.jpg
+backdrop_url: https://image.tmdb.org/t/p/w780/hreiLoPysWG79TsyQgMzFKaOTF5.jpg
+
+

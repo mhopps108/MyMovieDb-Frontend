@@ -1,5 +1,5 @@
 
-# Endpoint Urls #
+# MyMovieDb API Endpoint #
 /list
 /list/:listSlug
 /movie/:imdbId
