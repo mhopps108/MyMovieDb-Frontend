@@ -3,8 +3,8 @@ tmdb_id: 512200
 slug: jumanji-the-next-level-tt7975244
 
 title: Jumanji: The Next Level
-year: 2019
 
+year: 2019
 runtime: 123
 certification: PG-13
 genres: ActionAdventureComedyFantasy
@@ -33,8 +33,10 @@ tv_release:
 # Links #
 imdb_url:
 tmdb_url:
-trailer_url: https://www.youtube.com/watch?v=rBxcF-r9Ibs
 homepage_url: http://jumanjimovie.com
+
+# Trailer # 
+trailer_url: https://www.youtube.com/watch?v=rBxcF-r9Ibs
 
 # Images #
 poster_url: https://image.tmdb.org/t/p/w154/bB42KDdfWkOvmzmYkmK58ZlCa9P.jpg

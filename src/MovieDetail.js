@@ -12,6 +12,24 @@ import { Affix, Row } from "antd";
 import { useDataApi } from "./useDataApi";
 import "antd/dist/antd.css";
 
+function ReleaseDates({ data }) {
+  const {
+    theatrical_release,
+    digital_release,
+    physical_release,
+    tv_release
+  } = data;
+  return (
+    <>
+      <p>Release Dates</p>
+      {theatrical_release && <p>Theatrical: {theatrical_release}</p>}
+      {digital_release && <p>Digital: {digital_release}</p>}
+      {physical_release && <p>Physical: {physical_release}</p>}
+      {tv_release && <p>TV: {tv_release}</p>}
+    </>
+  );
+}
+
 function MovieDetail() {
   let { imdbId } = useParams();
   // tt3794354
@@ -82,7 +100,9 @@ function MovieDetail() {
                 </h1>
               </div>
             </div>
-
+            <div>
+              <ReleaseDates data={data} />
+            </div>
             <p>MovieDetail - {imdbId}</p>
             <p>
               {mapObject(data, function(key, value) {
