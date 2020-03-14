@@ -198,7 +198,8 @@ function MovieDetail() {
                   // height: "auto",
                   backgroundImage: `url(${data.backdrop_url})`,
                   // objectFit: "contain"
-                  backgroundPosition: "center",
+                  // backgroundPosition: "center",
+                  backgroundPosition: "center 33%",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   // borderRadius: "5px",
