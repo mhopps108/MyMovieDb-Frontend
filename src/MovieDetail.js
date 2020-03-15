@@ -279,7 +279,7 @@ function MovieDetail() {
                   backgroundImage: `url(${data.backdrop_url})`,
                   // objectFit: "contain"
                   // backgroundPosition: "center",
-                  backgroundPosition: "center 33%",
+                  backgroundPosition: "center 25%",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   // borderRadius: "5px",

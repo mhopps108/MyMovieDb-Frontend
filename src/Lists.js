@@ -45,16 +45,6 @@ function Lists() {
           whiteSpace: "nowrap"
         }}
       >
-        <li
-          style={{
-            display: "inline-block",
-            padding: "0px 10px"
-          }}
-        >
-          <Link to={`${match.url}/me-my-list`} style={linkStyle}>
-            My List Test
-          </Link>
-        </li>
         <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}/tmdb-popular`} style={linkStyle}>
             Popular
@@ -77,7 +67,7 @@ function Lists() {
         </li>
         <li style={{ display: "inline-block", padding: "0px 10px" }}>
           <Link to={`${match.url}`} style={linkStyle}>
-            Others (not linked)
+            FakeLink (not linked)
           </Link>
         </li>
       </ul>
