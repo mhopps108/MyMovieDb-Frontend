@@ -147,6 +147,60 @@ function Basics({ data }) {
   );
 }
 
+function Credits({ data }) {
+  const { credits } = data;
+  return (
+    <>
+      <h3>Credits</h3>
+      {credits &&
+        credits.map(item => {
+          const { order, character, actor } = item;
+          return (
+            <div>
+              {order}: {actor.name} AS {character}
+            </div>
+          );
+        })}
+    </>
+  );
+}
+
+function Similar({ data }) {
+  const { similar } = data;
+  return (
+    <>
+      <h3>Similar</h3>
+      {similar &&
+        similar.map((item, index) => {
+          const { title, year } = item;
+          return (
+            <div>
+              {index}: {title} ({year})
+            </div>
+          );
+        })}
+    </>
+  );
+}
+
+function Recommended({ data }) {
+  const { recommended } = data;
+  return (
+    <>
+      <h3>Recommended</h3>
+      {recommended &&
+        recommended.map((item, index) => {
+          const { title, year } = item;
+          return (
+            <div>
+              {index}: {title} ({year})
+            </div>
+          );
+        })}
+    </>
+  );
+}
+
 function MovieDetail() {
   let { imdbId } = useParams();
   // tt3794354
@@ -155,7 +209,27 @@ function MovieDetail() {
   const { data, isLoading, isError } = state;
 
   function mapObject(object, callback) {
-    return Object.keys(object).map(function(key) {
+    return Object.keys(object || {}).map(function(key) {
+      console.log(`Key: ${key}`);
+      // if (typeof key === "object" && key !== null) {
+      // if (typeof object[key] === "object" && key !== null) {
+      //   console.log("OBJECT");
+      //   let val = object[key];
+      //   console.log(val);
+      // }
+      if (key && ["credits", "similar", "recommended"].includes(key)) {
+        // console.log("ISOBJECT");
+        // return mapObject(object[key], callback);
+        object[key].map(item => {
+          return mapObject(item, callback);
+        });
+      }
+      if (key && ["actor"].includes(key)) {
+        mapObject(object[key], callback);
+      }
+      // if (key && ["credits", "similar", "recommended", "actor"].includes(key)) {
+      //   return mapObject(object[key], callback);
+      // }
       return callback(key, object[key]);
     });
   }
@@ -169,6 +243,8 @@ function MovieDetail() {
     console.log(state);
     console.log(`useParams - (MovieDetail)`);
     console.log(imdbId);
+    // console.log(`MAP-OBJECT`);
+    // mapObject(data, (key, val) => console.log(`${key}: ${val}`));
   }, [state, imdbId]);
 
   return (
@@ -233,17 +309,27 @@ function MovieDetail() {
             <div style={{ padding: "10px" }}>
               <ExternalLinks data={data} />
             </div>
+            <div style={{ padding: "10px" }}>
+              <Similar data={data} />
+            </div>
+            <div style={{ padding: "10px" }}>
+              <Recommended data={data} />
+            </div>
+
+            <div style={{ padding: "10px" }}>
+              <Credits data={data} />
+            </div>
 
             <hr />
             <p>MovieDetail - {imdbId}</p>
             <p>
-              {mapObject(data, function(key, value) {
+              {/* {mapObject(data, function(key, value) {
                 return (
                   <div>
-                    <b>{key}</b>: {value}
+                    <b>{key}</b> - {value}}
                   </div>
                 );
-              })}
+              })} */}
             </p>
           </div>
         </div>
