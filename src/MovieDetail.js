@@ -172,11 +172,13 @@ function Similar({ data }) {
       <h3>Similar</h3>
       {similar &&
         similar.map((item, index) => {
-          const { title, year } = item;
+          const { imdb_id, title, year } = item;
           return (
-            <div>
-              {index}: {title} ({year})
-            </div>
+            <Link to={`/movie/${imdb_id}`}>
+              <div>
+                {index}: {title} ({year})
+              </div>
+            </Link>
           );
         })}
     </>
@@ -190,11 +192,13 @@ function Recommended({ data }) {
       <h3>Recommended</h3>
       {recommended &&
         recommended.map((item, index) => {
-          const { title, year } = item;
+          const { imdb_id, title, year } = item;
           return (
-            <div>
-              {index}: {title} ({year})
-            </div>
+            <Link to={`/movie/${imdb_id}`}>
+              <div>
+                {index}: {title} ({year})
+              </div>
+            </Link>
           );
         })}
     </>
