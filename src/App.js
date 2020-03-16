@@ -23,13 +23,13 @@ export default function App() {
     <div className="App" style={{ maxWidth: "1000px" }}>
       <div
         style={{
+          height: "50px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center ",
           padding: "5px 10px",
           borderBottom: "1px solid #ccc",
           background: "#3f4c6b"
-          // background: "#778899"
           // color: "#ddd"
         }}
       >
