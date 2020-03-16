@@ -29,7 +29,6 @@ digital_release: 2020-03-03
 physical_release: 2020-03-17
 tv_release:
 
-
 # Links #
 imdb_url:
 tmdb_url:
@@ -42,4 +41,29 @@ trailer_url: https://www.youtube.com/watch?v=rBxcF-r9Ibs
 poster_url: https://image.tmdb.org/t/p/w154/bB42KDdfWkOvmzmYkmK58ZlCa9P.jpg
 backdrop_url: https://image.tmdb.org/t/p/w780/hreiLoPysWG79TsyQgMzFKaOTF5.jpg
 
+# Credits #
+credits_count: 32
+credits: Array[32]
+  0: Object
+    order: 0
+    character: "Sonic the Hedgehog (voice)"
+    actor: Object
+      name: "Ben Schwartz"
+      profile_url: "https://image.tmdb.org/t/p/w45/ty2N3LuUiXO1uKyRg74DUN82xQe.jpg"
 
+# Similar & Recommended Movies #
+similar: Array[20]
+and
+recommended: Array[22]
+  0: Object
+    imdb_id: "tt0119116"
+    title: "The Fifth Element"
+    year: 1997
+    runtime: 126
+    genres: Array[3]
+    imdb_rating_avg: "7.7"
+    imdb_rating_count: 416384
+    certification: "PG-13"
+    poster_url: "https://image.tmdb.org/t/p/w154/zaFa1NRZEnFgRTv5OVXkNIZO78O.jpg"
+    slug: "the-fifth-element-tt0119116"
+    detail_url: "the-fifth-element-tt0119116"
