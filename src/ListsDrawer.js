@@ -33,6 +33,8 @@ function ListsDrawer({ visible, setVisible, match }) {
         width={"250"}
       >
         <h4>{"TMDb List"}</h4>
+        <Link to={`/lists/tmdb-popular`}>Popular</Link>
+
         {/* <ul>
           <li>
             <Link to={`${match.url}/me-my-list`}>My List Test</Link>

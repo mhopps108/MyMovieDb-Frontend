@@ -157,7 +157,7 @@ function Credits({ data }) {
           style={{
             listStyleType: "none",
             height: "100%",
-            padding: "5px 0px",
+            padding: "0px 10px 16px 0px",
             cursor: "pointer",
             overflowX: "auto",
             overflowY: "hidden",

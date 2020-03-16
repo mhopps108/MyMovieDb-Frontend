@@ -14,12 +14,26 @@ import { useDataApi } from "./useDataApi";
 import MovieListItem from "./MovieListItem";
 import "antd/dist/antd.css";
 
+// LIST STATE
+// isLoading: false
+// isError: false
+// data: Object
+// name: "Top Rated"
+// slug: "tmdb-top-rated"
+// url: "https://api.themoviedb.org/3/movie/top_rated"
+// source: "TMDb"
+// created_at: "2020-03-11T09:23:36.899391"
+// movie_count: 99
+// last_updated: "2020-03-11T16:40:08.304355"
+// movielistitems: Array[99]
+
 function List() {
   let { listSlug } = useParams();
 
   const listUrl = `https://www.matthewhopps.com/api/list/${listSlug}/`;
   const [state, setUrl] = useDataApi(listUrl, []);
   const { data, isLoading, isError } = state;
+  const { name, source, movie_count, movielistitems } = data;
 
   useEffect(() => {
     setUrl(listUrl);
@@ -44,16 +58,26 @@ function List() {
             backgroundColor: "white"
           }}
         >
-          <p
+          <span
             style={{
               fontSize: "1.25rem",
               fontWeight: 600,
-              padding: 0,
+              padding: "0 5px",
               margin: 0
             }}
           >
-            {listSlug}
-          </p>
+            {source} {name}
+          </span>
+          <span
+            style={{
+              fontSize: "1.25rem",
+              fontWeight: 600,
+              padding: "0 5px",
+              margin: 0
+            }}
+          >
+            {movie_count}
+          </span>
         </div>
       </Affix>
       {isError && <p>Error</p>}
@@ -62,7 +86,7 @@ function List() {
         <div className="movie-list-wrapper mx-auto">
           <div style={{ background: "", padding: "10px 10px 40px 10px" }}>
             <Row gutter={[16, 24]}>
-              {(data.movielistitems || []).map(movie => (
+              {(movielistitems || []).map(movie => (
                 <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
               ))}
             </Row>
