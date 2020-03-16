@@ -65,12 +65,12 @@ function List() {
           <span
             style={{
               fontSize: "1.25rem",
-              fontWeight: 600,
-              padding: "0 5px",
-              margin: 0
+              fontWeight: 600
+              // padding: "5px 5px"
+              // margin: "0 5px"
             }}
           >
-            {source} {name}
+            {source} • {name}
           </span>
           <span
             style={{
@@ -87,7 +87,10 @@ function List() {
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
-        <div className="movie-list-wrapper mx-auto">
+        <div
+          className="movie-list-wrapper mx-auto"
+          // style={{ background: "#3f4c6b" }}
+        >
           <div style={{ background: "", padding: "10px 10px 40px 10px" }}>
             <Row gutter={[16, 24]}>
               {(movielistitems || []).map(movie => (
@@ -97,11 +100,6 @@ function List() {
           </div>
         </div>
       )}
-      {/* {!isLoading &&
-        data &&
-        (data.movielistitems || []).map(movie => (
-          <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
-        ))} */}
     </div>
   );
 }

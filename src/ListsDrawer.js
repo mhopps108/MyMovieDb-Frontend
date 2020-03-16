@@ -13,29 +13,10 @@ import { Drawer } from "antd";
 import { List } from "./List";
 import "antd/dist/antd.css";
 
-function ListsDrawer({ visible, setVisible, match }) {
-  // let match = useRouteMatch();
-
-  useEffect(() => {
-    console.log(`match - (Lists)`);
-    console.log(match);
-  }, [match]);
-
+function ListsDrawer({ visible, setVisible }) {
   const handelSelect = () => {
     setVisible(false);
   };
-
-  // <ul
-  //           style={{
-  //             display: "flex",
-  //             justifyContent: "space-around",
-  //             alignItems: "center ",
-  //             listStyleType: "none",
-  //             padding: "0px 5px",
-  //             margin: "0px",
-  //             backgroundColor: "white"
-  //           }}
-  //         >
 
   return (
     <div className="drawer-container">
@@ -45,8 +26,7 @@ function ListsDrawer({ visible, setVisible, match }) {
         closable={true}
         visible={visible}
         onClose={visable => setVisible(!visable)}
-        // height={"350"}
-        width={"250"}
+        width={"200"}
       >
         <div
           style={{
@@ -70,6 +50,7 @@ function ListsDrawer({ visible, setVisible, match }) {
               <Link to="/lists">Lists</Link>
             </h3>
           </div>
+          <hr />
           <div style={{ paddingBottom: "10px" }}>
             <h3>{"TMDb"}</h3>
             <div onClick={handelSelect}>
@@ -86,34 +67,7 @@ function ListsDrawer({ visible, setVisible, match }) {
             </div>
           </div>
         </div>
-        {/* <ul>
-          
-          <li>
-            <Link to={`${match.url}/tmdb-popular`}>Popular</Link>
-          </li>
-          <li>
-            <Link to={`${match.url}/`}></Link>
-          </li>
-          <li>
-            <Link to={`${match.url}/`}></Link>
-          </li>
-          <li>
-            <Link to={`${match.url}/`}></Link>
-          </li>
-          <li>
-            <Link to={`${match.url}`}>Others (not linked)</Link>
-          </li>
-        </ul> */}
       </Drawer>
-
-      {/* <Switch>
-        <Route path={`${match.path}/:listSlug`}>
-          <List />
-        </Route>
-        <Route path={match.path}>
-          <h3>Please select a list.</h3>
-        </Route>
-      </Switch> */}
     </div>
   );
 }

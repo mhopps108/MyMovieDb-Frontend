@@ -14,8 +14,6 @@ import { List } from "./List";
 import { ListsDrawer } from "./ListsDrawer";
 import { MovieDetail } from "./MovieDetail";
 
-// use relative urls instead of the full url for links
-
 export default function App() {
   const [listsDrawerVisible, setListsDrawerVisible] = useState(false);
   // let match = useRouteMatch();
@@ -31,7 +29,6 @@ export default function App() {
           padding: "5px 10px",
           borderBottom: "1px solid #ccc",
           background: "#3f4c6b"
-          // color: "#ddd"
         }}
       >
         <h1
@@ -40,8 +37,7 @@ export default function App() {
             fontWeight: 600,
             padding: "0px 0px 0px 5px",
             margin: 0,
-            // color: "rgba(255, 255, 255, 0.7)"
-            color: "#ddd"
+            color: "#eee"
           }}
         >
           {"MyMovieDb"}
@@ -53,7 +49,7 @@ export default function App() {
             <MenuOutlined
               style={{
                 fontSize: "1.2rem",
-                color: "#ddd"
+                color: "#eee"
               }}
             />
           }
@@ -80,9 +76,6 @@ export default function App() {
             <Route path="/">
               <Home />
             </Route>
-            {/* <Route path={match.path}>
-              <h3>Please select a list.</h3>
-            </Route> */}
           </Switch>
         </div>
         <ListsDrawer
