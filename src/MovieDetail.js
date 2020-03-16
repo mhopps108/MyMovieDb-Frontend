@@ -184,7 +184,7 @@ function Credits({ data }) {
                       backgroundPosition: "center",
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
-                      borderRadius: "3px",
+                      borderRadius: "4px",
                       cursor: "pointer"
                     }}
                   />
@@ -251,7 +251,7 @@ function Similar({ data }) {
                         backgroundPosition: "center",
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
-                        borderRadius: "5px",
+                        borderRadius: "4px",
                         cursor: "pointer"
                       }}
                     />
@@ -299,7 +299,7 @@ function Recommended({ data }) {
                         backgroundPosition: "center",
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
-                        borderRadius: "5px",
+                        borderRadius: "4px",
                         cursor: "pointer"
                       }}
                     />
