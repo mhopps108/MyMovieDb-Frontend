@@ -152,15 +152,61 @@ function Credits({ data }) {
   return (
     <>
       <h3>Credits</h3>
-      {credits &&
-        credits.map(item => {
-          const { order, character, actor } = item;
-          return (
-            <div>
-              {order}: {actor.name} AS {character}
-            </div>
-          );
-        })}
+      <div style={{ height: "120px" }}>
+        <ul
+          style={{
+            listStyleType: "none",
+            height: "100%",
+            padding: "5px 0px",
+            cursor: "pointer",
+            overflowX: "auto",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {credits &&
+            credits.map((item, index) => {
+              const { order, character, actor } = item;
+              return (
+                <li
+                  key={order}
+                  style={{ display: "inline-block", padding: "0px 15px" }}
+                >
+                  <div
+                    style={{
+                      width: "45px",
+                      height: "67px",
+                      backgroundImage: `url(${actor.profile_url})`,
+                      // objectFit: "contain"
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      borderRadius: "3px",
+                      cursor: "pointer"
+                    }}
+                  />
+                  <div
+                    style={{
+                      width: "55px",
+                      fontSize: "0.75rem",
+                      overflow: "hidden"
+                    }}
+                  >
+                    {actor.name}
+                  </div>
+                  <div
+                    style={{
+                      width: "55px",
+                      fontSize: "0.5rem",
+                      overflow: "hidden"
+                    }}
+                  >
+                    {character}
+                  </div>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </>
   );
 }
@@ -170,17 +216,45 @@ function Similar({ data }) {
   return (
     <>
       <h3>Similar</h3>
-      {similar &&
-        similar.map((item, index) => {
-          const { imdb_id, title, year } = item;
-          return (
-            <Link to={`/movie/${imdb_id}`}>
-              <div>
-                {index}: {title} ({year})
-              </div>
-            </Link>
-          );
-        })}
+      <div style={{ height: "120px" }}>
+        <ul
+          style={{
+            listStyleType: "none",
+            height: "100%",
+            padding: "5px 0px",
+            cursor: "pointer",
+            overflowX: "scroll",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {similar &&
+            similar.map((item, index) => {
+              const { imdb_id, title, year, poster_url } = item;
+              return (
+                <li
+                  key={imdb_id}
+                  style={{ display: "inline-block", padding: "0px 5px" }}
+                >
+                  <Link to={`/movie/${imdb_id}`}>
+                    <div
+                      style={{
+                        minWidth: "67px",
+                        height: "100px",
+                        backgroundImage: `url(${poster_url})`,
+                        // objectFit: "contain"
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        borderRadius: "5px",
+                        cursor: "pointer"
+                      }}
+                    />
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </>
   );
 }
@@ -190,17 +264,45 @@ function Recommended({ data }) {
   return (
     <>
       <h3>Recommended</h3>
-      {recommended &&
-        recommended.map((item, index) => {
-          const { imdb_id, title, year } = item;
-          return (
-            <Link to={`/movie/${imdb_id}`}>
-              <div>
-                {index}: {title} ({year})
-              </div>
-            </Link>
-          );
-        })}
+      <div style={{ height: "120px" }}>
+        <ul
+          style={{
+            listStyleType: "none",
+            height: "100%",
+            padding: "5px 0px",
+            cursor: "pointer",
+            overflowX: "auto",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {recommended &&
+            recommended.map((item, index) => {
+              const { imdb_id, title, year, poster_url } = item;
+              return (
+                <li
+                  key={imdb_id}
+                  style={{ display: "inline-block", padding: "0px 5px" }}
+                >
+                  <Link to={`/movie/${imdb_id}`}>
+                    <div
+                      style={{
+                        minWidth: "67px",
+                        height: "100px",
+                        backgroundImage: `url(${poster_url})`,
+                        // objectFit: "contain"
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        borderRadius: "5px",
+                        cursor: "pointer"
+                      }}
+                    />
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </>
   );
 }
@@ -310,9 +412,7 @@ function MovieDetail() {
             <div style={{ padding: "10px" }}>
               <Overview data={data} />
             </div>
-            <div style={{ padding: "10px" }}>
-              <ExternalLinks data={data} />
-            </div>
+
             <div style={{ padding: "10px" }}>
               <Similar data={data} />
             </div>
@@ -323,18 +423,21 @@ function MovieDetail() {
             <div style={{ padding: "10px" }}>
               <Credits data={data} />
             </div>
+            <div style={{ padding: "10px" }}>
+              <ExternalLinks data={data} />
+            </div>
 
             <hr />
-            <p>MovieDetail - {imdbId}</p>
-            <p>
-              {/* {mapObject(data, function(key, value) {
+            {/* <p>MovieDetail - {imdbId}</p>
+            <p> */}
+            {/* {mapObject(data, function(key, value) {
                 return (
                   <div>
                     <b>{key}</b> - {value}}
                   </div>
                 );
               })} */}
-            </p>
+            {/* </p> */}
           </div>
         </div>
       )}
