@@ -72,14 +72,14 @@ function Lists() {
         </li>
       </ul>
 
-      <Switch>
+      {/* <Switch>
         <Route path={`${match.path}/:listSlug`}>
           <List />
         </Route>
         <Route path={match.path}>
           <h3>Please select a list.</h3>
         </Route>
-      </Switch>
+      </Switch> */}
     </div>
   );
 }

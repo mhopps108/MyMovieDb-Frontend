@@ -21,6 +21,22 @@ function ListsDrawer({ visible, setVisible, match }) {
     console.log(match);
   }, [match]);
 
+  const handelSelect = () => {
+    setVisible(false);
+  };
+
+  // <ul
+  //           style={{
+  //             display: "flex",
+  //             justifyContent: "space-around",
+  //             alignItems: "center ",
+  //             listStyleType: "none",
+  //             padding: "0px 5px",
+  //             margin: "0px",
+  //             backgroundColor: "white"
+  //           }}
+  //         >
+
   return (
     <div className="drawer-container">
       <Drawer
@@ -32,24 +48,55 @@ function ListsDrawer({ visible, setVisible, match }) {
         // height={"350"}
         width={"250"}
       >
-        <h4>{"TMDb List"}</h4>
-        <Link to={`/lists/tmdb-popular`}>Popular</Link>
-
+        <div
+          style={{
+            listStyleType: "none",
+            padding: "0px 5px",
+            margin: "0px",
+            backgroundColor: "white"
+          }}
+        >
+          <div style={{ paddingBottom: "10px" }}>
+            <h4>Select</h4>
+            <div>
+              <Link to="/about">About</Link>
+            </div>
+            <div>
+              <Link to="/">Home</Link>
+            </div>
+            <div>
+              <Link to="/lists">Lists</Link>
+            </div>
+          </div>
+          <div style={{ paddingBottom: "10px" }}>
+            <h4>{"TMDb"}</h4>
+            <div onClick={handelSelect}>
+              <Link to={`/lists/tmdb-popular`}>Popular</Link>
+            </div>
+            <div onClick={handelSelect}>
+              <Link to={`/lists/tmdb-top-rated`}>Top Rated</Link>
+            </div>
+            <div onClick={handelSelect}>
+              <Link to={`/lists/tmdb-now-playing`}>Now Playing</Link>
+            </div>
+            <div onClick={handelSelect}>
+              <Link to={`/lists/tmdb-upcoming`}>Upcoming</Link>
+            </div>
+          </div>
+        </div>
         {/* <ul>
-          <li>
-            <Link to={`${match.url}/me-my-list`}>My List Test</Link>
-          </li>
+          
           <li>
             <Link to={`${match.url}/tmdb-popular`}>Popular</Link>
           </li>
           <li>
-            <Link to={`${match.url}/tmdb-top-rated`}>Top Rated</Link>
+            <Link to={`${match.url}/`}></Link>
           </li>
           <li>
-            <Link to={`${match.url}/tmdb-now-playing`}>Now Playing</Link>
+            <Link to={`${match.url}/`}></Link>
           </li>
           <li>
-            <Link to={`${match.url}/tmdb-upcoming`}>Upcoming</Link>
+            <Link to={`${match.url}/`}></Link>
           </li>
           <li>
             <Link to={`${match.url}`}>Others (not linked)</Link>

@@ -55,7 +55,11 @@ function List() {
             justifyContent: "space-between",
             alignItems: "center ",
             padding: "5px 10px",
-            backgroundColor: "white"
+            marginBottom: "10px",
+            backgroundColor: "white",
+            // boxShadow: "0 2px 2px -2px rgba(0,0,0,0.3)"
+            boxShadow:
+              "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
           }}
         >
           <span
@@ -76,7 +80,7 @@ function List() {
               margin: 0
             }}
           >
-            {movie_count}
+            #{movie_count}
           </span>
         </div>
       </Affix>

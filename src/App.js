@@ -10,6 +10,7 @@ import {
 import { Button, Icon } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { Lists } from "./Lists";
+import { List } from "./List";
 import { ListsDrawer } from "./ListsDrawer";
 import { MovieDetail } from "./MovieDetail";
 
@@ -33,25 +34,26 @@ export default function App() {
           // color: "#ddd"
         }}
       >
-        <p
+        <h1
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1.3rem",
             fontWeight: 600,
-            padding: 0,
+            padding: "0px 0px 0px 5px",
             margin: 0,
-            color: "rgba(255, 255, 255, 0.7)"
+            // color: "rgba(255, 255, 255, 0.7)"
+            color: "#ddd"
           }}
         >
           {"MyMovieDb"}
-        </p>
+        </h1>
 
         <Button
           type="primary"
           icon={
             <MenuOutlined
               style={{
-                fontSize: "1.1rem",
-                color: "#eee"
+                fontSize: "1.2rem",
+                color: "#ddd"
               }}
             />
           }
@@ -62,31 +64,9 @@ export default function App() {
 
       <Router>
         <div>
-          <ul
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center ",
-              listStyleType: "none",
-              padding: "0px 5px",
-              margin: "0px",
-              backgroundColor: "white"
-            }}
-          >
-            <li>
-              <Link to="/lists">Lists</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-          </ul>
-
           <Switch>
-            <Route path="/about">
-              <About />
+            <Route path={"/lists/:listSlug"}>
+              <List />
             </Route>
             <Route path="/lists">
               <Lists />
@@ -94,13 +74,18 @@ export default function App() {
             <Route path="/movie/:imdbId">
               <MovieDetail />
             </Route>
+            <Route path="/about">
+              <About />
+            </Route>
             <Route path="/">
               <Home />
             </Route>
+            {/* <Route path={match.path}>
+              <h3>Please select a list.</h3>
+            </Route> */}
           </Switch>
         </div>
         <ListsDrawer
-          // match={match}
           visible={listsDrawerVisible}
           setVisible={setListsDrawerVisible}
         />
