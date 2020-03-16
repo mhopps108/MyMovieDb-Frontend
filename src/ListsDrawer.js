@@ -57,19 +57,21 @@ function ListsDrawer({ visible, setVisible, match }) {
           }}
         >
           <div style={{ paddingBottom: "10px" }}>
-            <h4>Select</h4>
-            <div>
-              <Link to="/about">About</Link>
-            </div>
-            <div>
-              <Link to="/">Home</Link>
-            </div>
-            <div>
+            <h3>
+              <Link to="/about">Search</Link>
+            </h3>
+            <h3>
+              <Link to="/about">Discover</Link>
+            </h3>
+            <h3>
+              <Link to="/about">Release Dates</Link>
+            </h3>
+            <h3>
               <Link to="/lists">Lists</Link>
-            </div>
+            </h3>
           </div>
           <div style={{ paddingBottom: "10px" }}>
-            <h4>{"TMDb"}</h4>
+            <h3>{"TMDb"}</h3>
             <div onClick={handelSelect}>
               <Link to={`/lists/tmdb-popular`}>Popular</Link>
             </div>
