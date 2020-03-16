@@ -152,7 +152,7 @@ function Credits({ data }) {
   return (
     <>
       <h3>Credits</h3>
-      <div style={{ height: "120px" }}>
+      <div style={{ height: "150px" }}>
         <ul
           style={{
             listStyleType: "none",
@@ -160,6 +160,7 @@ function Credits({ data }) {
             padding: "5px 0px",
             cursor: "pointer",
             overflowX: "auto",
+            overflowY: "hidden",
             whiteSpace: "nowrap"
           }}
         >
@@ -169,12 +170,15 @@ function Credits({ data }) {
               return (
                 <li
                   key={order}
-                  style={{ display: "inline-block", padding: "0px 15px" }}
+                  style={{
+                    display: "inline-block",
+                    padding: "0px 10px 0px 0px"
+                  }}
                 >
                   <div
                     style={{
-                      width: "45px",
-                      height: "67px",
+                      width: "67px",
+                      height: "100px",
                       backgroundImage: `url(${actor.profile_url})`,
                       // objectFit: "contain"
                       backgroundPosition: "center",
@@ -186,7 +190,7 @@ function Credits({ data }) {
                   />
                   <div
                     style={{
-                      width: "55px",
+                      width: "75px",
                       fontSize: "0.75rem",
                       overflow: "hidden"
                     }}
@@ -195,9 +199,11 @@ function Credits({ data }) {
                   </div>
                   <div
                     style={{
-                      width: "55px",
+                      width: "75px",
                       fontSize: "0.5rem",
-                      overflow: "hidden"
+                      // overflow: "hidden"
+                      wordWrap: "break-word",
+                      wordBreak: "break-all"
                     }}
                   >
                     {character}
