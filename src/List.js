@@ -40,10 +40,8 @@ function List() {
   }, [listSlug, listUrl, setUrl]);
 
   useEffect(() => {
-    console.log(`List state data`);
+    console.log(`List state data ${listSlug}`);
     console.log(state);
-    console.log(`useParams - (List)`);
-    console.log(listSlug);
   }, [state, listSlug]);
 
   return (
