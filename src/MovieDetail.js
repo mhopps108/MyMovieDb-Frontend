@@ -84,21 +84,66 @@ function Ratings({ data }) {
         <StarOutlined style={{ paddingRight: "3px" }} />
         Ratings
       </h3>
-      {imdb_rating_avg && (
-        <div>
-          IMDb: {imdb_rating_avg}{" "}
-          {imdb_rating_count && `(${imdb_rating_count} votes)`}
-        </div>
-      )}
-      {tmdb_rating_avg && (
-        <div>
-          TMDb: {tmdb_rating_avg}{" "}
-          {tmdb_rating_count && `(${tmdb_rating_count} votes)`}
-        </div>
-      )}
+      <div style={{ display: "inline-flex" }}>
+        {imdb_rating_avg && (
+          <div>
+            <img
+              src={
+                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/j2yP-imdb-icon.png"
+              }
+              style={{ height: "50px" }}
+              alt="asdf"
+            />{" "}
+            {imdb_rating_avg}{" "}
+            {imdb_rating_count && `(${imdb_rating_count} votes)`}
+          </div>
+        )}
+        {tmdb_rating_avg && (
+          <div>
+            <img
+              src={
+                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/ENPU-tmdb-icon.png"
+              }
+              style={{ height: "30px" }}
+              alt="asdf"
+            />{" "}
+            {tmdb_rating_avg}{" "}
+            {tmdb_rating_count && `(${tmdb_rating_count} votes)`}
+          </div>
+        )}
+      </div>
     </>
   );
 }
+
+// function Ratings({ data }) {
+//   const {
+//     imdb_rating_avg,
+//     imdb_rating_count,
+//     tmdb_rating_avg,
+//     tmdb_rating_count
+//   } = data;
+//   return (
+//     <>
+//       <h3>
+//         <StarOutlined style={{ paddingRight: "3px" }} />
+//         Ratings
+//       </h3>
+//       {imdb_rating_avg && (
+//         <div>
+//           IMDb: {imdb_rating_avg}{" "}
+//           {imdb_rating_count && `(${imdb_rating_count} votes)`}
+//         </div>
+//       )}
+//       {tmdb_rating_avg && (
+//         <div>
+//           TMDb: {tmdb_rating_avg}{" "}
+//           {tmdb_rating_count && `(${tmdb_rating_count} votes)`}
+//         </div>
+//       )}
+//     </>
+//   );
+// }
 
 function ReleaseDates({ data }) {
   const {
@@ -133,16 +178,47 @@ function Overview({ data }) {
 }
 
 function Basics({ data }) {
-  const { year, runtime, certification, genres, budget, revenue } = data;
+  const {
+    year,
+    runtime,
+    certification,
+    genres,
+    budget,
+    revenue,
+    poster_url
+  } = data;
   return (
     <>
-      <h3>Stuff</h3>
-      {year && <div>year: {year}</div>}
-      {runtime && <div>runtime: {runtime}</div>}
-      {certification && <div>certification: {certification}</div>}
-      {genres && <div>genres: {genres.join(", ")}</div>}
-      {budget && <div>budget: {budget}</div>}
-      {revenue && <div>revenue: {revenue}</div>}
+      <div
+        style={{
+          // background: "white",
+          // padding: "6px",
+          // height: "150px",
+          display: "flex"
+          // borderRadius: "5px",
+          // border: "1px solid rgba(0,0,0,0.25)",
+        }}
+      >
+        <div
+          style={{
+            minWidth: "92px",
+            height: "138px",
+            backgroundImage: `url(${poster_url})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            borderRadius: "5px"
+          }}
+        />
+        <div style={{ paddingLeft: "1rem", paddingTop: "0.25rem" }}>
+          {year && <div>year: {year}</div>}
+          {runtime && <div>runtime: {runtime}</div>}
+          {certification && <div>certification: {certification}</div>}
+          {genres && <div>genres: {genres.join(", ")}</div>}
+          {budget && <div>budget: {budget}</div>}
+          {revenue && <div>revenue: {revenue}</div>}
+        </div>
+      </div>
     </>
   );
 }
@@ -270,7 +346,7 @@ function Recommended({ data }) {
   return (
     <>
       <h3>Recommended</h3>
-      <div style={{ height: "120px" }}>
+      <div style={{ height: "150px" }}>
         <ul
           style={{
             listStyleType: "none",
@@ -292,8 +368,8 @@ function Recommended({ data }) {
                   <Link to={`/movie/${imdb_id}`}>
                     <div
                       style={{
-                        minWidth: "67px",
-                        height: "100px",
+                        minWidth: "80px",
+                        height: "120px",
                         backgroundImage: `url(${poster_url})`,
                         // objectFit: "contain"
                         backgroundPosition: "center",
@@ -315,48 +391,17 @@ function Recommended({ data }) {
 
 function MovieDetail() {
   let { imdbId } = useParams();
-  // tt3794354
   const movieUrl = `https://www.matthewhopps.com/api/movie/${imdbId}/`;
   const [state, setUrl] = useDataApi(movieUrl, []);
   const { data, isLoading, isError } = state;
-
-  function mapObject(object, callback) {
-    return Object.keys(object || {}).map(function(key) {
-      console.log(`Key: ${key}`);
-      // if (typeof key === "object" && key !== null) {
-      // if (typeof object[key] === "object" && key !== null) {
-      //   console.log("OBJECT");
-      //   let val = object[key];
-      //   console.log(val);
-      // }
-      if (key && ["credits", "similar", "recommended"].includes(key)) {
-        // console.log("ISOBJECT");
-        // return mapObject(object[key], callback);
-        object[key].map(item => {
-          return mapObject(item, callback);
-        });
-      }
-      if (key && ["actor"].includes(key)) {
-        mapObject(object[key], callback);
-      }
-      // if (key && ["credits", "similar", "recommended", "actor"].includes(key)) {
-      //   return mapObject(object[key], callback);
-      // }
-      return callback(key, object[key]);
-    });
-  }
 
   useEffect(() => {
     setUrl(movieUrl);
   }, [imdbId, movieUrl, setUrl]);
 
   useEffect(() => {
-    console.log(`State - (MovieDetail)`);
+    console.log(`State - (MovieDetail) - useParams= ${imdbId}`);
     console.log(state);
-    console.log(`useParams - (MovieDetail)`);
-    console.log(imdbId);
-    // console.log(`MAP-OBJECT`);
-    // mapObject(data, (key, val) => console.log(`${key}: ${val}`));
   }, [state, imdbId]);
 
   return (
@@ -364,86 +409,83 @@ function MovieDetail() {
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
-        <div className="movie-list-wrapper mx-auto">
-          <div style={{ background: "", padding: "10px 10px 40px 10px" }}>
+        <div style={{ maxWidth: "1000px" }}>
+          <div
+            style={{
+              background: "white",
+              // padding: "6px",
+              height: "200px",
+              // maxWidth: "300px",
+              display: "flex"
+
+              // borderRadius: "5px",
+              // border: "1px solid rgba(0,0,0,0.25)"
+              // boxShadow: "3px 3px 3px 0px rgba(0,0,0,0.25)"
+              // boxShadow: "0 2px 4px 2px rgba(0,0,0,.25)"
+            }}
+          >
             <div
               style={{
-                background: "white",
-                // padding: "6px",
-                height: "150px",
-                // maxWidth: "300px",
-                display: "flex",
+                minWidth: "100%",
+                height: "auto",
+                // height: "auto",
+                backgroundImage: `url(${data.backdrop_url})`,
+                // objectFit: "contain"
+                // backgroundPosition: "center",
+                backgroundPosition: "center 25%",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
                 // borderRadius: "5px",
-                border: "1px solid rgba(0,0,0,0.25)"
-                // boxShadow: "3px 3px 3px 0px rgba(0,0,0,0.25)"
-                // boxShadow: "0 2px 4px 2px rgba(0,0,0,.25)"
+                display: "flex",
+                justifyContent: "center",
+                borderBottomLeftRadius: "4px",
+                borderBottomRightRadius: "4px"
               }}
             >
-              <div
+              <h1
                 style={{
-                  minWidth: "100%",
-                  height: "auto",
-                  // height: "auto",
-                  backgroundImage: `url(${data.backdrop_url})`,
-                  // objectFit: "contain"
-                  // backgroundPosition: "center",
-                  backgroundPosition: "center 25%",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  // borderRadius: "5px",
-                  display: "flex",
-                  justifyContent: "center"
+                  alignSelf: "flex-end",
+                  color: "white",
+                  textShadow: "2px 2px 4px #000000"
                 }}
               >
-                <h1
-                  style={{
-                    alignSelf: "flex-end",
-                    color: "white",
-                    textShadow: "2px 2px 4px #000000"
-                  }}
-                >
-                  {data.title}
-                </h1>
-              </div>
+                {data.title}
+              </h1>
             </div>
+          </div>
+
+          <div style={{ background: "", padding: "10px 10px 40px 10px" }}>
             <div style={{ padding: "10px" }}>
               <Basics data={data} />
             </div>
+            <hr />
             <div style={{ padding: "10px" }}>
               <Ratings data={data} />
             </div>
+            <hr />
             <div style={{ padding: "10px" }}>
               <ReleaseDates data={data} />
             </div>
+            <hr />
             <div style={{ padding: "10px" }}>
               <Overview data={data} />
             </div>
-
+            <hr />
             <div style={{ padding: "10px" }}>
               <Similar data={data} />
             </div>
             <div style={{ padding: "10px" }}>
               <Recommended data={data} />
             </div>
-
+            <hr />
             <div style={{ padding: "10px" }}>
               <Credits data={data} />
             </div>
+            <hr />
             <div style={{ padding: "10px" }}>
               <ExternalLinks data={data} />
             </div>
-
             <hr />
-            {/* <p>MovieDetail - {imdbId}</p>
-            <p> */}
-            {/* {mapObject(data, function(key, value) {
-                return (
-                  <div>
-                    <b>{key}</b> - {value}}
-                  </div>
-                );
-              })} */}
-            {/* </p> */}
           </div>
         </div>
       )}
