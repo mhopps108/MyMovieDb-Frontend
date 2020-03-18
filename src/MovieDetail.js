@@ -118,7 +118,7 @@ function Ratings({ data }) {
         <StarOutlined style={{ paddingRight: "3px" }} />
         Ratings
       </h3>
-      <div style={{ display: "inline-flex" }}>
+      <div style={{ display: "" }}>
         {imdb_rating_avg && (
           <div>
             <img
@@ -232,12 +232,88 @@ function Basics({ data }) {
   );
 }
 
+// function Credits({ data }) {
+//   const { credits } = data;
+//   return (
+//     <>
+//       <h3>Credits</h3>
+//       <div style={{ height: "" }}>
+//         <ul
+//           style={{
+//             listStyleType: "none",
+//             height: "100%",
+//             padding: "0px 10px 16px 0px",
+//             cursor: "pointer",
+//             overflowX: "auto",
+//             overflowY: "hidden",
+//             whiteSpace: "nowrap"
+//           }}
+//         >
+//           {credits &&
+//             credits.map((item, index) => {
+//               const { order, character, actor } = item;
+//               return (
+//                 <li
+//                   key={order}
+//                   style={{
+//                     display: "inline-block",
+//                     padding: "0px 10px 0px 0px",
+//                     width: "80px"
+//                   }}
+//                 >
+//                   <div
+//                     style={{
+//                       width: "67px",
+//                       height: "100px",
+//                       backgroundImage: `url(${actor.profile_url})`,
+//                       // objectFit: "contain"
+//                       backgroundPosition: "center",
+//                       backgroundSize: "cover",
+//                       backgroundRepeat: "no-repeat",
+//                       borderRadius: "4px",
+//                       cursor: "pointer"
+//                     }}
+//                   />
+//                   <div style={{ textAlign: "center" }}>
+//                     <Paragraph
+//                       ellipsis={{ rows: 2 }}
+//                       style={{
+//                         // maxWidth: "79px",
+//                         fontSize: "0.75rem",
+//                         padding: 0,
+//                         margin: 0,
+//                         whiteSpace: "normal"
+//                       }}
+//                     >
+//                       {actor.name}
+//                     </Paragraph>
+//                     <Paragraph
+//                       ellipsis={{ rows: 2 }}
+//                       style={{
+//                         fontSize: "0.6rem",
+//                         padding: 0,
+//                         margin: 0,
+//                         whiteSpace: "normal"
+//                       }}
+//                     >
+//                       {character}
+//                     </Paragraph>
+//                   </div>
+//                 </li>
+//               );
+//             })}
+//         </ul>
+//       </div>
+//     </>
+//   );
+// }
+
 function Credits({ data }) {
   const { credits } = data;
   return (
     <>
       <h3>Credits</h3>
-      <div style={{ height: "160px" }}>
+      <div style={{ height: "200px" }}>
         <ul
           style={{
             listStyleType: "none",
@@ -246,7 +322,8 @@ function Credits({ data }) {
             cursor: "pointer",
             overflowX: "auto",
             overflowY: "hidden",
-            whiteSpace: "nowrap"
+            whiteSpace: "nowrap",
+            display: "flex"
           }}
         >
           {credits &&
@@ -256,8 +333,9 @@ function Credits({ data }) {
                 <li
                   key={order}
                   style={{
-                    display: "",
-                    padding: "0px 10px 0px 0px"
+                    // display: "inline-block",
+                    padding: "0px 10px 0px 0px",
+                    width: "80px"
                   }}
                 >
                   <div
@@ -273,18 +351,52 @@ function Credits({ data }) {
                       cursor: "pointer"
                     }}
                   />
-                  <Paragraph
-                    ellipsis={{ rows: 2 }}
-                    style={{ display: "block", padding: 0, margin: 0 }}
+                  <div
+                    style={{
+                      overflow: "hidden",
+                      // position: "relative",
+                      lineHeight: "1.2em",
+                      height: "4.8em",
+                      // textAlign: "justify",
+                      // marginRight: "-1em",
+                      // paddingRight: "1em",
+                      whiteSpace: "normal"
+                    }}
                   >
-                    {actor.name}
-                  </Paragraph>
-                  <Paragraph
-                    ellipsis={{ rows: 2 }}
-                    // style={{ padding: 0, margin: 0 }}
-                  >
-                    {character}
-                  </Paragraph>
+                    <p
+                      style={{
+                        // maxWidth: "79px",
+                        fontSize: "0.75rem",
+                        padding: 0,
+                        margin: 0
+                        // overflow: "hidden",
+                        // position: "relative",
+                        // lineHeight: "1.2em",
+                        // maxHeight: "2.4em",
+                        // textAlign: "justify",
+                        // marginRight: "-1em",
+                        // paddingRight: "1em"
+                      }}
+                    >
+                      {actor.name}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "0.6rem",
+                        padding: 0,
+                        margin: 0
+                        // overflow: "hidden",
+                        // position: "relative",
+                        // lineHeight: "1.2em",
+                        // maxHeight: "2.4em",
+                        // textAlign: "justify",
+                        // marginRight: "-1em",
+                        // paddingRight: "1em"
+                      }}
+                    >
+                      {character}
+                    </p>
+                  </div>
                 </li>
               );
             })}
