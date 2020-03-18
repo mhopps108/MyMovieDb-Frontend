@@ -71,6 +71,57 @@ function ExternalLinks({ data }) {
   );
 }
 
+// var videoSrc = "https://www.youtube.com/embed/" +
+//         this.props.video + "?autoplay=" +
+//         this.props.autoplay + "&rel=" +
+//         this.props.rel + "&modestbranding=" +
+//         this.props.modest;
+//     return (
+//       <div className="container">
+//         <iframe className="player" type="text/html" width="100%" height="100%"
+//   src={videoSrc}
+//   frameborder="0"/>
+
+function Trailer({ data }) {
+  const { trailer_url, title } = data;
+  // const youtube_src = `${trailer_url}+ ?controls=1`;
+  const youtube_src = `${trailer_url}`;
+  // const youtube_src = "https://www.youtube.com/embed/szby7ZHLnkA";
+  // https://www.youtube.com/watch?v=szby7ZHLnkA
+
+  return (
+    <>
+      <h3>
+        <YoutubeOutlined style={{ fontSize: "30px", color: "#333" }} />
+        Trailer
+      </h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
+      >
+        {trailer_url && (
+          <iframe
+            title={title}
+            type="text/html"
+            width="300"
+            height="170"
+            src={youtube_src}
+          />
+          // <iframe
+          //   title={title}
+          //   width="420"
+          //   height="315"
+          //   src={youtube_src}
+          // />
+        )}
+      </div>
+    </>
+  );
+}
+
 function Ratings({ data }) {
   const {
     imdb_rating_avg,
@@ -115,35 +166,6 @@ function Ratings({ data }) {
     </>
   );
 }
-
-// function Ratings({ data }) {
-//   const {
-//     imdb_rating_avg,
-//     imdb_rating_count,
-//     tmdb_rating_avg,
-//     tmdb_rating_count
-//   } = data;
-//   return (
-//     <>
-//       <h3>
-//         <StarOutlined style={{ paddingRight: "3px" }} />
-//         Ratings
-//       </h3>
-//       {imdb_rating_avg && (
-//         <div>
-//           IMDb: {imdb_rating_avg}{" "}
-//           {imdb_rating_count && `(${imdb_rating_count} votes)`}
-//         </div>
-//       )}
-//       {tmdb_rating_avg && (
-//         <div>
-//           TMDb: {tmdb_rating_avg}{" "}
-//           {tmdb_rating_count && `(${tmdb_rating_count} votes)`}
-//         </div>
-//       )}
-//     </>
-//   );
-// }
 
 function ReleaseDates({ data }) {
   const {
@@ -469,6 +491,10 @@ function MovieDetail() {
             <hr />
             <div style={{ padding: "10px" }}>
               <Overview data={data} />
+            </div>
+            <hr />
+            <div style={{ padding: "10px" }}>
+              <Trailer data={data} />
             </div>
             <hr />
             <div style={{ padding: "10px" }}>
