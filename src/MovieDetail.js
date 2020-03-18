@@ -8,7 +8,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
-import { Affix, Row } from "antd";
+import { Affix, Row, Typography } from "antd";
 import {
   StarOutlined,
   CalendarOutlined,
@@ -17,6 +17,8 @@ import {
 } from "@ant-design/icons";
 import { useDataApi } from "./useDataApi";
 import "antd/dist/antd.css";
+
+const { Paragraph } = Typography;
 
 function ExternalLinks({ data }) {
   const { imdb_id, tmdb_id, homepage_url, trailer_url } = data;
@@ -71,34 +73,21 @@ function ExternalLinks({ data }) {
   );
 }
 
-// var videoSrc = "https://www.youtube.com/embed/" +
-//         this.props.video + "?autoplay=" +
-//         this.props.autoplay + "&rel=" +
-//         this.props.rel + "&modestbranding=" +
-//         this.props.modest;
-//     return (
-//       <div className="container">
-//         <iframe className="player" type="text/html" width="100%" height="100%"
-//   src={videoSrc}
-//   frameborder="0"/>
-
 function Trailer({ data }) {
   const { trailer_url, title } = data;
   // const youtube_src = `${trailer_url}+ ?controls=1`;
   const youtube_src = `${trailer_url}`;
-  // const youtube_src = "https://www.youtube.com/embed/szby7ZHLnkA";
-  // https://www.youtube.com/watch?v=szby7ZHLnkA
 
   return (
     <>
       <h3>
-        <YoutubeOutlined style={{ fontSize: "30px", color: "#333" }} />
+        <YoutubeOutlined style={{ paddingRight: "3px" }} />
         Trailer
       </h3>
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
           alignItems: "center"
         }}
       >
@@ -110,12 +99,6 @@ function Trailer({ data }) {
             height="170"
             src={youtube_src}
           />
-          // <iframe
-          //   title={title}
-          //   width="420"
-          //   height="315"
-          //   src={youtube_src}
-          // />
         )}
       </div>
     </>
@@ -194,7 +177,11 @@ function Overview({ data }) {
     <>
       <h3>Overview</h3>
       {tagline && <div>tagline: {tagline}</div>}
-      {overview && <div>overview: {overview}</div>}
+      {overview && (
+        <Paragraph ellipsis={{ rows: 5, expandable: true }} style={{}}>
+          {overview}
+        </Paragraph>
+      )}
     </>
   );
 }
@@ -250,7 +237,7 @@ function Credits({ data }) {
   return (
     <>
       <h3>Credits</h3>
-      <div style={{ height: "150px" }}>
+      <div style={{ height: "160px" }}>
         <ul
           style={{
             listStyleType: "none",
@@ -269,7 +256,7 @@ function Credits({ data }) {
                 <li
                   key={order}
                   style={{
-                    display: "inline-block",
+                    display: "",
                     padding: "0px 10px 0px 0px"
                   }}
                 >
@@ -286,26 +273,18 @@ function Credits({ data }) {
                       cursor: "pointer"
                     }}
                   />
-                  <div
-                    style={{
-                      width: "75px",
-                      fontSize: "0.75rem",
-                      overflow: "hidden"
-                    }}
+                  <Paragraph
+                    ellipsis={{ rows: 2 }}
+                    style={{ display: "block", padding: 0, margin: 0 }}
                   >
                     {actor.name}
-                  </div>
-                  <div
-                    style={{
-                      width: "75px",
-                      fontSize: "0.5rem",
-                      // overflow: "hidden"
-                      wordWrap: "break-word",
-                      wordBreak: "break-all"
-                    }}
+                  </Paragraph>
+                  <Paragraph
+                    ellipsis={{ rows: 2 }}
+                    // style={{ padding: 0, margin: 0 }}
                   >
                     {character}
-                  </div>
+                  </Paragraph>
                 </li>
               );
             })}
@@ -435,15 +414,8 @@ function MovieDetail() {
           <div
             style={{
               background: "white",
-              // padding: "6px",
               height: "200px",
-              // maxWidth: "300px",
               display: "flex"
-
-              // borderRadius: "5px",
-              // border: "1px solid rgba(0,0,0,0.25)"
-              // boxShadow: "3px 3px 3px 0px rgba(0,0,0,0.25)"
-              // boxShadow: "0 2px 4px 2px rgba(0,0,0,.25)"
             }}
           >
             <div
@@ -476,7 +448,7 @@ function MovieDetail() {
             </div>
           </div>
 
-          <div style={{ background: "", padding: "10px 10px 40px 10px" }}>
+          <div style={{ padding: "10px 10px 40px 10px" }}>
             <div style={{ padding: "10px" }}>
               <Basics data={data} />
             </div>
