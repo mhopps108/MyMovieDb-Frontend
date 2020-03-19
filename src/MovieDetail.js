@@ -80,27 +80,19 @@ function Trailer({ data }) {
 
   return (
     <>
-      <h3>
-        <YoutubeOutlined style={{ paddingRight: "3px" }} />
+      <h3 className="d-flex align-items-center">
+        <YoutubeOutlined className="pr-2" />
         Trailer
       </h3>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        {trailer_url && (
+      {trailer_url && (
+        <div class="embed-responsive embed-responsive-16by9">
           <iframe
+            class="embed-responsive-item"
             title={title}
-            type="text/html"
-            width="300"
-            height="170"
             src={youtube_src}
           />
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }
@@ -114,8 +106,8 @@ function Ratings({ data }) {
   } = data;
   return (
     <>
-      <h3>
-        <StarOutlined style={{ paddingRight: "3px" }} />
+      <h3 className="d-flex align-items-center">
+        <StarOutlined className="pr-2" />
         Ratings
       </h3>
       <div style={{ display: "" }}>
@@ -175,7 +167,7 @@ function Overview({ data }) {
   const { overview, tagline } = data;
   return (
     <>
-      <h3>Overview</h3>
+      <h4>Overview</h4>
       {tagline && <div>tagline: {tagline}</div>}
       {overview && (
         <Paragraph ellipsis={{ rows: 5, expandable: true }} style={{}}>
@@ -232,87 +224,11 @@ function Basics({ data }) {
   );
 }
 
-// function Credits({ data }) {
-//   const { credits } = data;
-//   return (
-//     <>
-//       <h3>Credits</h3>
-//       <div style={{ height: "" }}>
-//         <ul
-//           style={{
-//             listStyleType: "none",
-//             height: "100%",
-//             padding: "0px 10px 16px 0px",
-//             cursor: "pointer",
-//             overflowX: "auto",
-//             overflowY: "hidden",
-//             whiteSpace: "nowrap"
-//           }}
-//         >
-//           {credits &&
-//             credits.map((item, index) => {
-//               const { order, character, actor } = item;
-//               return (
-//                 <li
-//                   key={order}
-//                   style={{
-//                     display: "inline-block",
-//                     padding: "0px 10px 0px 0px",
-//                     width: "80px"
-//                   }}
-//                 >
-//                   <div
-//                     style={{
-//                       width: "67px",
-//                       height: "100px",
-//                       backgroundImage: `url(${actor.profile_url})`,
-//                       // objectFit: "contain"
-//                       backgroundPosition: "center",
-//                       backgroundSize: "cover",
-//                       backgroundRepeat: "no-repeat",
-//                       borderRadius: "4px",
-//                       cursor: "pointer"
-//                     }}
-//                   />
-//                   <div style={{ textAlign: "center" }}>
-//                     <Paragraph
-//                       ellipsis={{ rows: 2 }}
-//                       style={{
-//                         // maxWidth: "79px",
-//                         fontSize: "0.75rem",
-//                         padding: 0,
-//                         margin: 0,
-//                         whiteSpace: "normal"
-//                       }}
-//                     >
-//                       {actor.name}
-//                     </Paragraph>
-//                     <Paragraph
-//                       ellipsis={{ rows: 2 }}
-//                       style={{
-//                         fontSize: "0.6rem",
-//                         padding: 0,
-//                         margin: 0,
-//                         whiteSpace: "normal"
-//                       }}
-//                     >
-//                       {character}
-//                     </Paragraph>
-//                   </div>
-//                 </li>
-//               );
-//             })}
-//         </ul>
-//       </div>
-//     </>
-//   );
-// }
-
 function Credits({ data }) {
   const { credits } = data;
   return (
     <>
-      <h3>Credits</h3>
+      <h4>Credits</h4>
       <div style={{ height: "200px" }}>
         <ul
           style={{
@@ -354,28 +270,16 @@ function Credits({ data }) {
                   <div
                     style={{
                       overflow: "hidden",
-                      // position: "relative",
                       lineHeight: "1.2em",
                       height: "4.8em",
-                      // textAlign: "justify",
-                      // marginRight: "-1em",
-                      // paddingRight: "1em",
                       whiteSpace: "normal"
                     }}
                   >
                     <p
                       style={{
-                        // maxWidth: "79px",
                         fontSize: "0.75rem",
                         padding: 0,
                         margin: 0
-                        // overflow: "hidden",
-                        // position: "relative",
-                        // lineHeight: "1.2em",
-                        // maxHeight: "2.4em",
-                        // textAlign: "justify",
-                        // marginRight: "-1em",
-                        // paddingRight: "1em"
                       }}
                     >
                       {actor.name}
@@ -385,13 +289,6 @@ function Credits({ data }) {
                         fontSize: "0.6rem",
                         padding: 0,
                         margin: 0
-                        // overflow: "hidden",
-                        // position: "relative",
-                        // lineHeight: "1.2em",
-                        // maxHeight: "2.4em",
-                        // textAlign: "justify",
-                        // marginRight: "-1em",
-                        // paddingRight: "1em"
                       }}
                     >
                       {character}
@@ -410,45 +307,40 @@ function Similar({ data }) {
   const { similar } = data;
   return (
     <>
-      <h3>Similar</h3>
-      <div style={{ height: "120px" }}>
-        <ul
-          style={{
-            listStyleType: "none",
-            height: "100%",
-            padding: "5px 0px",
-            cursor: "pointer",
-            overflowX: "scroll",
-            whiteSpace: "nowrap"
-          }}
-        >
-          {similar &&
-            similar.map((item, index) => {
-              const { imdb_id, title, year, poster_url } = item;
-              return (
-                <li
-                  key={imdb_id}
-                  style={{ display: "inline-block", padding: "0px 5px" }}
-                >
-                  <Link to={`/movie/${imdb_id}`}>
-                    <div
-                      style={{
-                        minWidth: "67px",
-                        height: "100px",
-                        backgroundImage: `url(${poster_url})`,
-                        // objectFit: "contain"
-                        backgroundPosition: "center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        borderRadius: "4px",
-                        cursor: "pointer"
-                      }}
-                    />
-                  </Link>
-                </li>
-              );
-            })}
-        </ul>
+      <h4>Similar</h4>
+      <div className="d-flex align-content-center flex-nowrap overflow-auto">
+        {similar &&
+          similar.map(item => {
+            const { imdb_id, title, poster_url } = item;
+            return (
+              <Link to={`/movie/${imdb_id}`}>
+                <div className="d-flex flex-column mr-2">
+                  <img
+                    style={{
+                      minWidth: "80px",
+                      height: "120px",
+                      borderRadius: "4px"
+                    }}
+                    src={poster_url}
+                    class="img-fluid"
+                    alt={title}
+                  />
+                  <p
+                    style={{
+                      fontSize: "0.75rem",
+                      overflow: "hidden",
+                      lineHeight: "1.2em",
+                      height: "2.4em",
+                      color: "#333"
+                    }}
+                    className="my-1"
+                  >
+                    {title}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
       </div>
     </>
   );
@@ -458,45 +350,40 @@ function Recommended({ data }) {
   const { recommended } = data;
   return (
     <>
-      <h3>Recommended</h3>
-      <div style={{ height: "150px" }}>
-        <ul
-          style={{
-            listStyleType: "none",
-            height: "100%",
-            padding: "5px 0px",
-            cursor: "pointer",
-            overflowX: "auto",
-            whiteSpace: "nowrap"
-          }}
-        >
-          {recommended &&
-            recommended.map((item, index) => {
-              const { imdb_id, title, year, poster_url } = item;
-              return (
-                <li
-                  key={imdb_id}
-                  style={{ display: "inline-block", padding: "0px 5px" }}
-                >
-                  <Link to={`/movie/${imdb_id}`}>
-                    <div
-                      style={{
-                        minWidth: "80px",
-                        height: "120px",
-                        backgroundImage: `url(${poster_url})`,
-                        // objectFit: "contain"
-                        backgroundPosition: "center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        borderRadius: "4px",
-                        cursor: "pointer"
-                      }}
-                    />
-                  </Link>
-                </li>
-              );
-            })}
-        </ul>
+      <h4>Recommended</h4>
+      <div className="d-flex align-content-center flex-nowrap overflow-auto">
+        {recommended &&
+          recommended.map(item => {
+            const { imdb_id, title, poster_url } = item;
+            return (
+              <Link to={`/movie/${imdb_id}`}>
+                <div className="d-flex flex-column mr-2">
+                  <img
+                    style={{
+                      minWidth: "80px",
+                      height: "120px",
+                      borderRadius: "4px"
+                    }}
+                    src={poster_url}
+                    class="img-fluid"
+                    alt={title}
+                  />
+                  <p
+                    style={{
+                      fontSize: "0.75rem",
+                      overflow: "hidden",
+                      lineHeight: "1.2em",
+                      height: "2.4em",
+                      color: "#333"
+                    }}
+                    className="my-1"
+                  >
+                    {title}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
       </div>
     </>
   );

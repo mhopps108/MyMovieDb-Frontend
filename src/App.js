@@ -7,6 +7,10 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+
+// import bootstrap from "bootstrap"; // eslint-disable-line no-unused-vars
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 import { Button, Icon } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { Lists } from "./Lists";
