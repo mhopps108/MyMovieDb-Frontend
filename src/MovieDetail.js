@@ -106,10 +106,10 @@ function Ratings({ data }) {
   } = data;
   return (
     <>
-      <h3 className="d-flex align-items-center">
-        <StarOutlined className="pr-2" />
+      <h4 className="d-flex align-items-center">
+        <i className="bx bx-star pr-2" />
         Ratings
-      </h3>
+      </h4>
       <div style={{ display: "" }}>
         {imdb_rating_avg && (
           <div>
@@ -151,10 +151,10 @@ function ReleaseDates({ data }) {
   } = data;
   return (
     <>
-      <h3>
-        <CalendarOutlined style={{ paddingRight: "3px" }} />
+      <h4 className="d-flex align-items-center">
+        <i className="bx bx-calendar-check pr-2" />
         Release Dates
-      </h3>
+      </h4>
       {theatrical_release && <div>Theatrical: {theatrical_release}</div>}
       {digital_release && <div>Digital: {digital_release}</div>}
       {physical_release && <div>Physical: {physical_release}</div>}
@@ -307,7 +307,10 @@ function Similar({ data }) {
   const { similar } = data;
   return (
     <>
-      <h4>Similar</h4>
+      <h4 className="d-flex align-items-center">
+        <i className="bx bx-movie pr-2" />
+        Similar
+      </h4>
       <div className="d-flex align-content-center flex-nowrap overflow-auto">
         {similar &&
           similar.map(item => {
