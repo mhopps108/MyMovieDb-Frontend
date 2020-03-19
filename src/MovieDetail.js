@@ -212,12 +212,37 @@ function Basics({ data }) {
           }}
         />
         <div style={{ paddingLeft: "1rem", paddingTop: "0.25rem" }}>
-          {year && <div>year: {year}</div>}
-          {runtime && <div>runtime: {runtime}</div>}
-          {certification && <div>certification: {certification}</div>}
-          {genres && <div>genres: {genres.join(", ")}</div>}
-          {budget && <div>budget: {budget}</div>}
-          {revenue && <div>revenue: {revenue}</div>}
+          {year && (
+            <div>
+              <span class="badge badge-light">Year</span> {year}
+            </div>
+          )}
+          {runtime && (
+            <div>
+              <span class="badge badge-light">Runtime</span> {runtime}
+            </div>
+          )}
+          {certification && (
+            <div>
+              <span class="badge badge-light">Certification</span>{" "}
+              {certification}
+            </div>
+          )}
+          {genres && (
+            <div>
+              <span class="badge badge-light">Genres</span> {genres.join(", ")}
+            </div>
+          )}
+          {budget && (
+            <div>
+              <span class="badge badge-light">Budget</span> {budget}
+            </div>
+          )}
+          {revenue && (
+            <div>
+              <span class="badge badge-light">Revenue</span> {revenue}
+            </div>
+          )}
         </div>
       </div>
     </>
