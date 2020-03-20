@@ -38,7 +38,7 @@ function ListsDrawer({ visible, setVisible }) {
         >
           <div style={{ paddingBottom: "10px" }}>
             <h3>
-              <Link to="/about">Search</Link>
+              <Link to="/search">Search</Link>
             </h3>
             <h3>
               <Link to="/about">Discover</Link>

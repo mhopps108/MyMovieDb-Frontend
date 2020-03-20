@@ -17,6 +17,7 @@ import { Lists } from "./Lists";
 import { List } from "./List";
 import { ListsDrawer } from "./ListsDrawer";
 import { MovieDetail } from "./MovieDetail";
+import { Search } from "./Search";
 
 export default function App() {
   const [listsDrawerVisible, setListsDrawerVisible] = useState(false);
@@ -48,7 +49,6 @@ export default function App() {
         </h1>
 
         <Button
-          type="primary"
           icon={
             <MenuOutlined
               style={{
@@ -73,6 +73,9 @@ export default function App() {
             </Route>
             <Route path="/movie/:imdbId">
               <MovieDetail />
+            </Route>
+            <Route path="/search">
+              <Search />
             </Route>
             <Route path="/about">
               <About />
