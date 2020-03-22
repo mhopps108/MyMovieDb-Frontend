@@ -19,7 +19,7 @@ function MovieListItem({ movie }) {
       <div
         className="d-flex p-2"
         style={{
-          background: "#efefef",
+          background: "#fefefe",
           height: "150px",
           minWidth: "350px",
           maxWidth: "400px",
@@ -40,14 +40,15 @@ function MovieListItem({ movie }) {
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            borderRadius: "3px"
+            borderRadius: "4px"
           }}
         />
         <div className="w-100 px-3 pt-1">
           <Link to={`/movie/${imdb_id}`}>
             <h6
+              className="mb-2"
               style={{
-                fontSize: "1.15rem",
+                fontSize: "1.2rem",
                 color: "#555",
                 overflow: "hidden",
                 lineHeight: "1.2em",
@@ -58,7 +59,7 @@ function MovieListItem({ movie }) {
               {title}
             </h6>
           </Link>
-          <div>
+          <div style={{ fontSize: "0.8rem", color: "grey" }}>
             <div className="w-75 d-flex justify-content-between align-items-center">
               <p className="mb-1">{year}</p>
               <p className="mb-1">•</p>
@@ -66,13 +67,14 @@ function MovieListItem({ movie }) {
               <p className="mb-1">•</p>
               <p className="mb-1">{certification}</p>
             </div>
-            <div className="w-75 d-flex justify-content-between align-items-center">
-              <p className="m-0">
+            <div className="w-75 d-flex justify-content-start align-items-center">
+              <p className="m-0 pr-3">
                 {imdb_rating_avg}
                 <small>/10</small>
               </p>
-              <p className="mb-0">•</p>
-              <p className="m-0">{imdb_rating_count} votes</p>
+              <p className="m-0">
+                <small>{imdb_rating_count} votes</small>
+              </p>
             </div>
             <p className="m-0">{genres && genres.join(" • ")}</p>
           </div>
