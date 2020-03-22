@@ -26,7 +26,7 @@ export default function App() {
   return (
     // #14181c
     // <div className="App" style={{ maxWidth: "1000px", background: "#222222" }}>
-    <div className="App" style={{ maxWidth: "1000px" }}>
+    <div className="App" style={{ maxWidth: "1000px", margin: "0 auto" }}>
       <div
         className="d-flex justify-content-between align-items-center px-2"
         style={{
