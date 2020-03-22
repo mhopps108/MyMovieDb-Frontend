@@ -18,47 +18,40 @@ import { List } from "./List";
 import { ListsDrawer } from "./ListsDrawer";
 import { MovieDetail } from "./MovieDetail";
 import { Search } from "./Search";
+import "./styles.css";
 
 export default function App() {
   const [listsDrawerVisible, setListsDrawerVisible] = useState(false);
-  // let match = useRouteMatch();
 
   return (
+    // #14181c
+    // <div className="App" style={{ maxWidth: "1000px", background: "#222222" }}>
     <div className="App" style={{ maxWidth: "1000px" }}>
       <div
+        className="d-flex justify-content-between align-items-center px-2"
         style={{
           height: "50px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center ",
-          padding: "5px 10px",
-          borderBottom: "1px solid #ccc",
-          background: "#3f4c6b"
+          borderBottom: "1px solid #f5f6f7",
+          background: "#222"
         }}
       >
         <h1
-          style={{
-            fontSize: "1.3rem",
-            fontWeight: 600,
-            padding: "0px 0px 0px 5px",
-            margin: 0,
-            color: "#eee"
-          }}
+          className="p-0 m-0"
+          style={{ fontSize: "1.3rem", fontWeight: 600, color: "#f5f6f7" }}
         >
           {"MyMovieDb"}
         </h1>
 
         <Button
-          icon={
-            <MenuOutlined
-              style={{
-                fontSize: "1.2rem",
-                color: "#eee"
-              }}
-            />
-          }
-          style={{ border: "none", background: "none" }}
+          className="p-0 m-0"
+          icon={<MenuOutlined />}
           onClick={() => setListsDrawerVisible(true)}
+          style={{
+            border: "none",
+            background: "none",
+            fontSize: "1.2rem",
+            color: "#f5f6f7"
+          }}
         />
       </div>
 

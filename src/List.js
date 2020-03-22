@@ -45,57 +45,35 @@ function List() {
   }, [state, listSlug]);
 
   return (
-    <div>
-      <Affix offsetTop={0}>
+    <div className="container-fluid">
+      <div className="row sticky-top">
         <div
+          className="col-12 d-flex justify-content-between align-items-center py-1 px-2 mb-2"
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center ",
-            padding: "5px 10px",
-            marginBottom: "10px",
-            backgroundColor: "white",
-            // boxShadow: "0 2px 2px -2px rgba(0,0,0,0.3)"
+            fontSize: "1.25rem",
+            fontWeight: 600,
+            backgroundColor: "#efefef",
+            color: "#14181c",
             boxShadow:
-              "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+              "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2)"
           }}
         >
-          <span
-            style={{
-              fontSize: "1.25rem",
-              fontWeight: 600
-              // padding: "5px 5px"
-              // margin: "0 5px"
-            }}
-          >
+          <div>
             {source} • {name}
-          </span>
-          <span
-            style={{
-              fontSize: "1.25rem",
-              fontWeight: 600,
-              padding: "0 5px",
-              margin: 0
-            }}
-          >
-            #{movie_count}
-          </span>
+          </div>
+          <div>#{movie_count}</div>
         </div>
-      </Affix>
+      </div>
+
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
-        <div
-          className="movie-list-wrapper mx-auto"
-          // style={{ background: "#3f4c6b" }}
-        >
-          <div style={{ background: "", padding: "10px 10px 40px 10px" }}>
-            <Row gutter={[16, 24]}>
-              {(movielistitems || []).map(movie => (
-                <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
-              ))}
-            </Row>
-          </div>
+        <div className="row">
+          {(movielistitems || []).map(movie => (
+            <div className="col-xs-12 col-sm-6 py-2">
+              <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
+            </div>
+          ))}
         </div>
       )}
     </div>

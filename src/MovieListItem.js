@@ -35,55 +35,52 @@ function MovieListItem({ movie }) {
   } = movie;
 
   return (
-    <Col
-      xs={{ span: 24 }}
-      sm={{ span: 12 }}
-      lg={{ span: 8 }}
-      style={{ paddingBottom: "0px" }}
-    >
+    <>
       <div
+        className="d-flex p-1"
         style={{
-          background: "white",
-          padding: "6px",
+          background: "#efefef",
           height: "150px",
-          display: "flex",
-          borderRadius: "5px",
-          border: "1px solid rgba(0,0,0,0.25)",
+          maxWidth: "350px",
+          borderRadius: "4px",
+          border: "1px solid rgba(0,0,0,0.2)",
           // boxShadow: "0 2px 2px 0px rgba(0,0,0,0.25)"
-          // boxShadow:
-          //   "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
           boxShadow:
-            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19)"
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.2)"
         }}
       >
         <div
           style={{
             minWidth: "92px",
-            height: "138px",
+            // height: "138px",
+            height: "100%",
             backgroundImage: `url(${poster_url})`,
             // objectFit: "contain"
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            borderRadius: "5px"
+            borderRadius: "4px"
           }}
         />
-        <div style={{ paddingLeft: "1rem", paddingTop: "0.25rem" }}>
+        <div className="w-100 px-3 pt-2">
           <Link to={`/movie/${imdb_id}`}>
-            <h5 style={{ fontSize: "1rem" }}>{title}</h5>
+            <h5 style={{ color: "text-grey" }}>{title}</h5>
           </Link>
           <div>
-            <p style={{ margin: 0 }}>
-              {year} • {runtime} • {certification}
-            </p>
-            <p style={{ margin: 0 }}>
-              {imdb_rating_avg} / 10 ({imdb_rating_count} votes)
-            </p>
-            <p style={{ margin: 0 }}>{genres && genres.join(", ")}</p>
+            <div className="d-flex justify-content-between align-items-center">
+              <p className="mb-1">{year}</p>
+              <p className="mb-1">{runtime}m</p>
+              <p className="mb-1">{certification}</p>
+            </div>
+            <div className="d-flex justify-content-between align-items-center">            
+              <p className="mb-1">{imdb_rating_avg}</p>
+              <p className="mb-1">{imdb_rating_count} votes</p>
+              </div>              
+            <p className="mb-1">{genres && genres.join(", ")}</p>
           </div>
         </div>
       </div>
-    </Col>
+    </>
   );
 }
 

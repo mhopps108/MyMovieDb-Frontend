@@ -25,7 +25,7 @@ function ExternalLinks({ data }) {
 
   return (
     <>
-      <h3>Links</h3>
+      <h3 className="detail-section-headers">Links</h3>
       <div
         style={{
           display: "flex",
@@ -150,16 +150,18 @@ function ReleaseDates({ data }) {
     tv_release
   } = data;
   return (
-    <>
-      <h4 className="d-flex align-items-center">
+    <div style={{ color: "#343a40" }}>
+      <h4 className="detail-section-headers d-flex align-items-center ">
         <i className="bx bx-calendar-check pr-2" />
         Release Dates
       </h4>
-      {theatrical_release && <div>Theatrical: {theatrical_release}</div>}
+      {theatrical_release && (
+        <div style={{ color: "#343a40" }}>Theatrical: {theatrical_release}</div>
+      )}
       {digital_release && <div>Digital: {digital_release}</div>}
       {physical_release && <div>Physical: {physical_release}</div>}
       {tv_release && <div>TV: {tv_release}</div>}
-    </>
+    </div>
   );
 }
 
@@ -208,7 +210,7 @@ function Basics({ data }) {
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            borderRadius: "5px"
+            borderRadius: "4px"
           }}
         />
         <div style={{ paddingLeft: "1rem", paddingTop: "0.25rem" }}>
@@ -440,7 +442,7 @@ function MovieDetail() {
         <div style={{ maxWidth: "1000px" }}>
           <div
             style={{
-              background: "white",
+              // background: "white",
               height: "200px",
               display: "flex"
             }}
@@ -458,20 +460,19 @@ function MovieDetail() {
                 backgroundRepeat: "no-repeat",
                 // borderRadius: "5px",
                 display: "flex",
-                justifyContent: "center",
-                borderBottomLeftRadius: "4px",
-                borderBottomRightRadius: "4px"
+                justifyContent: "space-around",
+                textAlign: "center"
               }}
             >
-              <h1
+              <h2
                 style={{
                   alignSelf: "flex-end",
-                  color: "white",
+                  color: "#efefef",
                   textShadow: "2px 2px 4px #000000"
                 }}
               >
                 {data.title}
-              </h1>
+              </h2>
             </div>
           </div>
 
