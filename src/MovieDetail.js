@@ -198,6 +198,7 @@ function Basics({ data }) {
           // padding: "6px",
           // height: "150px",
           display: "flex"
+          // marginTop: "-100px"
           // borderRadius: "5px",
           // border: "1px solid rgba(0,0,0,0.25)",
         }}
@@ -213,7 +214,12 @@ function Basics({ data }) {
             borderRadius: "4px"
           }}
         />
-        <div style={{ paddingLeft: "1rem", paddingTop: "0.25rem" }}>
+        <div
+          style={{
+            paddingLeft: "1rem",
+            paddingTop: "0.25rem"
+          }}
+        >
           {year && (
             <div>
               <span class="badge badge-light">Year</span> {year}
@@ -439,10 +445,13 @@ function MovieDetail() {
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
-        <div style={{ maxWidth: "1000px" }}>
+        <div
+          // style={{ maxWidth: "1000px", background: "black", color: "white" }}
+          style={{ maxWidth: "1000px" }}
+        >
           <div
             style={{
-              // background: "white",
+              // background: "grey",
               height: "200px",
               display: "flex"
             }}
@@ -461,7 +470,8 @@ function MovieDetail() {
                 // borderRadius: "5px",
                 display: "flex",
                 justifyContent: "space-around",
-                textAlign: "center"
+                textAlign: "center",
+                boxShadow: "inset 0px -31px 58px 0px rgba(0,0,0,1)"
               }}
             >
               <h2

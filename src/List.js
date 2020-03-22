@@ -68,9 +68,9 @@ function List() {
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
-        <div className="row">
+        <div className="row m-auto">
           {(movielistitems || []).map(movie => (
-            <div className="col-xs-12 col-sm-6 py-2">
+            <div className="col-xs-12 col-md-6 p-1">
               <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
             </div>
           ))}
