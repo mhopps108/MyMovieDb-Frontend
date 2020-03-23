@@ -180,6 +180,83 @@ function Overview({ data }) {
   );
 }
 
+function Basics({ data }) {
+  const {
+    year,
+    runtime,
+    certification,
+    genres,
+    budget,
+    revenue,
+    poster_url
+  } = data;
+  return (
+    <>
+      <div
+        style={{
+          // background: "white",
+          // padding: "6px",
+          // height: "150px",
+          display: "flex"
+          // marginTop: "-100px"
+          // borderRadius: "5px",
+          // border: "1px solid rgba(0,0,0,0.25)",
+        }}
+      >
+        <div
+          style={{
+            minWidth: "92px",
+            height: "138px",
+            backgroundImage: `url(${poster_url})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            borderRadius: "4px"
+          }}
+        />
+        <div
+          style={{
+            paddingLeft: "1rem",
+            paddingTop: "0.25rem"
+          }}
+        >
+          {year && (
+            <div>
+              <span class="badge badge-light">Year</span> {year}
+            </div>
+          )}
+          {runtime && (
+            <div>
+              <span class="badge badge-light">Runtime</span> {runtime}
+            </div>
+          )}
+          {certification && (
+            <div>
+              <span class="badge badge-light">Certification</span>{" "}
+              {certification}
+            </div>
+          )}
+          {genres && (
+            <div>
+              <span class="badge badge-light">Genres</span> {genres.join(", ")}
+            </div>
+          )}
+          {budget && (
+            <div>
+              <span class="badge badge-light">Budget</span> {budget}
+            </div>
+          )}
+          {revenue && (
+            <div>
+              <span class="badge badge-light">Revenue</span> {revenue}
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
 function Credits({ data }) {
   const { credits } = data;
   return (
@@ -348,83 +425,6 @@ function Recommended({ data }) {
   );
 }
 
-function Basics({ data }) {
-  const {
-    year,
-    runtime,
-    certification,
-    genres,
-    budget,
-    revenue,
-    poster_url
-  } = data;
-  return (
-    <>
-      <div
-        style={{
-          // background: "white",
-          // padding: "6px",
-          // height: "150px",
-          display: "flex"
-          // marginTop: "-100px"
-          // borderRadius: "5px",
-          // border: "1px solid rgba(0,0,0,0.25)",
-        }}
-      >
-        <div
-          style={{
-            minWidth: "92px",
-            height: "138px",
-            backgroundImage: `url(${poster_url})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            borderRadius: "4px"
-          }}
-        />
-        <div
-          style={{
-            paddingLeft: "1rem",
-            paddingTop: "0.25rem"
-          }}
-        >
-          {year && (
-            <div>
-              <span class="badge badge-light">Year</span> {year}
-            </div>
-          )}
-          {runtime && (
-            <div>
-              <span class="badge badge-light">Runtime</span> {runtime}
-            </div>
-          )}
-          {certification && (
-            <div>
-              <span class="badge badge-light">Certification</span>{" "}
-              {certification}
-            </div>
-          )}
-          {genres && (
-            <div>
-              <span class="badge badge-light">Genres</span> {genres.join(", ")}
-            </div>
-          )}
-          {budget && (
-            <div>
-              <span class="badge badge-light">Budget</span> {budget}
-            </div>
-          )}
-          {revenue && (
-            <div>
-              <span class="badge badge-light">Revenue</span> {revenue}
-            </div>
-          )}
-        </div>
-      </div>
-    </>
-  );
-}
-
 function MovieDetail() {
   let { imdbId } = useParams();
   const movieUrl = `https://www.matthewhopps.com/api/movie/${imdbId}/`;
@@ -446,21 +446,20 @@ function MovieDetail() {
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
         <div
-          className="container-fluid"
-          style={{
-            maxWidth: "1000px",
-            background: "linear-gradient(0deg,#222222 0%, #000000 50%)",
-            color: "white"
-            // overflow: "hidden"
-          }}
+          // style={{ maxWidth: "1000px", background: "black", color: "white" }}
+          style={{ maxWidth: "1000px" }}
         >
-          <div className="row content-wrap" style={{}}>
-            <div // bg image
+          <div
+            style={{
+              // background: "grey",
+              height: "200px",
+              display: "flex"
+            }}
+          >
+            <div
               style={{
-                // zIndex: "0",
-                marginTop: "-50px",
                 minWidth: "100%",
-                height: "300px",
+                height: "auto",
                 // height: "auto",
                 backgroundImage: `url(${data.backdrop_url})`,
                 // objectFit: "contain"
@@ -469,76 +468,26 @@ function MovieDetail() {
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 // borderRadius: "5px",
-                // display: "flex",
-                // justifyContent: "space-around",
-                // textAlign: "center"
+                display: "flex",
+                justifyContent: "space-around",
+                textAlign: "center",
                 boxShadow: "inset 0px -31px 58px 0px rgba(0,0,0,1)"
               }}
-            />
-            <div className="col-12 d-flex" style={{ marginTop: "-40px" }}>
-              <div // poster image
+            >
+              <h2
                 style={{
-                  minWidth: "92px",
-                  height: "138px",
-                  backgroundImage: `url(${data.poster_url})`,
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  borderRadius: "4px"
+                  alignSelf: "flex-end",
+                  color: "#efefef",
+                  textShadow: "2px 2px 4px #000000"
                 }}
-              />
-              <div className="flex-column">
-                <h1
-                  style={{
-                    fontSize: "22px",
-                    color: "#cdcdcd"
-                    // textShadow: "2px 2px 4px #efefef"
-                  }}
-                >
-                  {data.title}
-                </h1>
-                <div
-                  style={{
-                    paddingLeft: "1rem",
-                    paddingTop: "0.25rem"
-                  }}
-                >
-                  {data.year && (
-                    <div>
-                      <span class="badge badge-light">Year</span> {data.year}
-                    </div>
-                  )}
-                  {data.runtime && (
-                    <div>
-                      <span class="badge badge-light">Runtime</span>{" "}
-                      {data.runtime}
-                    </div>
-                  )}
-                  {data.certification && (
-                    <div>
-                      <span class="badge badge-light">Certification</span>{" "}
-                      {data.certification}
-                    </div>
-                  )}
-                  {data.genres && (
-                    <div>
-                      <span class="badge badge-light">Genres</span>{" "}
-                      {data.genres.join(", ")}
-                    </div>
-                  )}
-                </div>
-              </div>
+              >
+                {data.title}
+              </h2>
             </div>
           </div>
-          {/* end row content-wrap */}
 
           <div style={{ padding: "10px 10px 40px 10px" }}>
-            <div
-              style={{
-                padding: "10px",
-                boxShadow: "0px -66px 20px 20px rgba(0,0,0,0.75)"
-              }}
-            >
+            <div style={{ padding: "10px" }}>
               <Basics data={data} />
             </div>
             <hr />

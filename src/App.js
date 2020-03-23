@@ -30,6 +30,7 @@ export default function App() {
       <div
         className="d-flex justify-content-between align-items-center px-2"
         style={{
+          // zIndex: "1",
           height: "50px",
           borderBottom: "1px solid #f5f6f7",
           background: "#222"
