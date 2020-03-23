@@ -19,8 +19,6 @@ import { useDataApi } from "./useDataApi";
 // import "antd/dist/antd.css";
 import "./styles.css";
 
-const { Paragraph } = Typography;
-
 function ExternalLinks({ data }) {
   const { imdb_id, tmdb_id, homepage_url, trailer_url } = data;
 
@@ -76,15 +74,11 @@ function ExternalLinks({ data }) {
 
 function Trailer({ data }) {
   const { trailer_url, title } = data;
-  // const youtube_src = `${trailer_url}+ ?controls=1`;
-  const youtube_src = `${trailer_url}`;
+  const youtube_src = `${trailer_url}?controls=1`;
 
   return (
     <>
-      <h3 className="d-flex align-items-center">
-        <YoutubeOutlined className="pr-2" />
-        Trailer
-      </h3>
+      <h4 className="detail-section-header">Trailer</h4>
       {trailer_url && (
         <div class="embed-responsive embed-responsive-16by9">
           <iframe
@@ -111,28 +105,20 @@ function Ratings({ data }) {
       <div style={{ display: "" }}>
         {imdb_rating_avg && (
           <div>
-            <img
-              src={
-                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/j2yP-imdb-icon.png"
-              }
-              style={{ height: "50px" }}
-              alt="asdf"
-            />{" "}
-            {imdb_rating_avg}{" "}
-            {imdb_rating_count && `(${imdb_rating_count} votes)`}
+            IMDb {imdb_rating_avg}
+            <small className="pl-2">{"\\10"}</small>{" "}
+            <small className="pl-2">
+              {imdb_rating_count && `${imdb_rating_count} votes`}
+            </small>{" "}
           </div>
         )}
         {tmdb_rating_avg && (
           <div>
-            <img
-              src={
-                "https://uploads.codesandbox.io/uploads/user/906db8ec-ac6e-47bb-a465-6d94f13116ce/ENPU-tmdb-icon.png"
-              }
-              style={{ height: "30px" }}
-              alt="asdf"
-            />{" "}
-            {tmdb_rating_avg}{" "}
-            {tmdb_rating_count && `(${tmdb_rating_count} votes)`}
+            TMDb {tmdb_rating_avg}
+            <small className="pl-2">{"\\10"}</small>{" "}
+            <small className="pl-2">
+              {tmdb_rating_count && `${tmdb_rating_count} votes`}
+            </small>{" "}
           </div>
         )}
       </div>
@@ -147,19 +133,17 @@ function ReleaseDates({ data }) {
     physical_release,
     tv_release
   } = data;
+
   return (
-    <div style={{ color: "#343a40" }}>
-      <h4 className="detail-section-headers d-flex align-items-center ">
-        <i className="bx bx-calendar-check pr-2" />
-        Release Dates
-      </h4>
-      {theatrical_release && (
-        <div style={{ color: "#343a40" }}>Theatrical: {theatrical_release}</div>
-      )}
-      {digital_release && <div>Digital: {digital_release}</div>}
-      {physical_release && <div>Physical: {physical_release}</div>}
-      {tv_release && <div>TV: {tv_release}</div>}
-    </div>
+    <>
+      <h4 className="detail-section-header">Release Dates</h4>
+      <div>
+        {theatrical_release && <div>Theatrical: {theatrical_release}</div>}
+        {digital_release && <div>Digital: {digital_release}</div>}
+        {physical_release && <div>Physical: {physical_release}</div>}
+        {tv_release && <div>TV: {tv_release}</div>}
+      </div>
+    </>
   );
 }
 
@@ -167,13 +151,9 @@ function Overview({ data }) {
   const { overview, tagline } = data;
   return (
     <>
-      <h4>Overview</h4>
-      {tagline && <div>tagline: {tagline}</div>}
-      {overview && (
-        <Paragraph ellipsis={{ rows: 5, expandable: true }} style={{}}>
-          {overview}
-        </Paragraph>
-      )}
+      <h4 className="detail-section-header">Overview</h4>
+      {/* {tagline && <small style={{ textAlign: "center" }}>{tagline}</small>} */}
+      {overview && <p style={{}}>{overview}</p>}
     </>
   );
 }
@@ -261,10 +241,8 @@ function Similar({ data }) {
   const { similar } = data;
   return (
     <>
-      <h4 className="d-flex align-items-center">
-        <i className="bx bx-movie pr-2" />
-        Similar
-      </h4>
+      <h4 className="detail-section-header">Similar</h4>
+
       <div className="d-flex align-content-center flex-nowrap overflow-auto">
         {similar &&
           similar.map(item => {
@@ -276,7 +254,8 @@ function Similar({ data }) {
                     style={{
                       minWidth: "80px",
                       height: "120px",
-                      borderRadius: "4px"
+                      borderRadius: "4px",
+                      border: "1px solid #555"
                     }}
                     src={poster_url}
                     class="img-fluid"
@@ -288,7 +267,7 @@ function Similar({ data }) {
                       overflow: "hidden",
                       lineHeight: "1.2em",
                       height: "2.4em",
-                      color: "#333"
+                      color: "#cdcdcd"
                     }}
                     className="my-1"
                   >
@@ -348,6 +327,7 @@ function Recommended({ data }) {
 
 function Basics({ data }) {
   const {
+    title,
     year,
     runtime,
     certification,
@@ -356,67 +336,61 @@ function Basics({ data }) {
     revenue,
     poster_url
   } = data;
+
   return (
     <>
-      <div
+      <div // poster image
         style={{
-          // background: "white",
-          // padding: "6px",
-          // height: "150px",
-          display: "flex"
-          // marginTop: "-100px"
-          // borderRadius: "5px",
-          // border: "1px solid rgba(0,0,0,0.25)",
+          minWidth: "92px",
+          height: "138px",
+          backgroundImage: `url(${poster_url})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          borderRadius: "4px",
+          border: "1px solid #555"
         }}
-      >
-        <div
+      />
+      <div className="flex-column pl-3">
+        <h1
+          className="mb-3"
           style={{
-            minWidth: "92px",
-            height: "138px",
-            backgroundImage: `url(${poster_url})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            borderRadius: "4px"
-          }}
-        />
-        <div
-          style={{
-            paddingLeft: "1rem",
-            paddingTop: "0.25rem"
+            fontSize: "22px",
+            color: "#cdcdcd"
           }}
         >
-          {year && (
-            <div>
-              <span class="badge badge-light">Year</span> {year}
-            </div>
-          )}
-          {runtime && (
-            <div>
-              <span class="badge badge-light">Runtime</span> {runtime}
-            </div>
-          )}
-          {certification && (
-            <div>
-              <span class="badge badge-light">Certification</span>{" "}
-              {certification}
-            </div>
-          )}
-          {genres && (
-            <div>
-              <span class="badge badge-light">Genres</span> {genres.join(", ")}
-            </div>
-          )}
-          {budget && (
-            <div>
-              <span class="badge badge-light">Budget</span> {budget}
-            </div>
-          )}
-          {revenue && (
-            <div>
-              <span class="badge badge-light">Revenue</span> {revenue}
-            </div>
-          )}
+          {title}
+        </h1>
+        <div className="w-75">
+          <div className="d-flex mb-3">
+            {year && (
+              <div className="pr-4">
+                <span class="badge badge-pill badge-light">{year}</span>
+              </div>
+            )}
+            {runtime && (
+              <div className="pr-4">
+                <span class="badge badge-pill badge-light">{runtime}m</span>
+              </div>
+            )}
+            {certification && (
+              <div className="">
+                <span class="badge badge-pill badge-light">
+                  {certification}
+                </span>
+              </div>
+            )}
+          </div>
+          <div className="d-flex justify-content-start">
+            {genres &&
+              genres.map(genre => {
+                return (
+                  <div className="pr-3">
+                    <span class="badge badge-secondary">{genre}</span>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </>
@@ -465,115 +439,41 @@ function MovieDetail() {
                 boxShadow: "inset 0px -31px 58px 0px rgba(0,0,0,1)"
               }}
             />
-            <div className="col-12 d-flex pl-4" style={{ marginTop: "-45px" }}>
-              <div // poster image
-                style={{
-                  minWidth: "92px",
-                  height: "138px",
-                  backgroundImage: `url(${data.poster_url})`,
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  borderRadius: "4px"
-                }}
-              />
-              <div className="flex-column pl-3">
-                <h1
-                  className="mb-3"
-                  style={{
-                    fontSize: "22px",
-                    color: "#cdcdcd"
-                  }}
-                >
-                  {data.title}
-                </h1>
-                <div className="w-75 mb-3">
-                  <div className="d-flex justify-content-between mb-2">
-                    {data.year && (
-                      <div>
-                        <span class="badge badge-pill badge-light">
-                          {data.year}
-                        </span>
-                      </div>
-                    )}
-                    {data.runtime && (
-                      <div>
-                        <span class="badge badge-pill badge-light">
-                          {data.runtime}m
-                        </span>
-                      </div>
-                    )}
-                    {data.certification && (
-                      <div>
-                        <span class="badge badge-pill badge-light">
-                          {data.certification}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="d-flex justify-content-start">
-                    {data.genres &&
-                      data.genres.map(genre => {
-                        return (
-                          <div className="pr-2">
-                            <span class="badge badge-secondary">{genre}</span>
-                          </div>
-                        );
-                      })}
-                  </div>
-                </div>
-              </div>
+            <div
+              className="col-12 d-flex pl-4 pb-4"
+              style={{ marginTop: "-40px" }}
+            >
+              <Basics data={data} />
             </div>
 
-            <div classname="col-12 d-flex">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <Ratings data={data} />
+            </div>
+
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
+              <ReleaseDates data={data} />
+            </div>
+
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
+              <Overview data={data} />
+            </div>
+
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
+              <Trailer data={data} />
+            </div>
+
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
+              <Similar data={data} />
             </div>
           </div>
           {/* end row content-wrap */}
 
-          {/* <div className="mb-5">OLD<div> */}
-          <div style={{ padding: "10px 10px 40px 10px" }}>
-            <div
-              style={{
-                padding: "10px"
-                // boxShadow: "0px -66px 20px 20px rgba(0,0,0,0.75)"
-              }}
-            >
-              {/* <Basics data={data} /> */}
-            </div>
-            <hr />
-            <div style={{ padding: "10px" }}>
-              <Ratings data={data} />
-            </div>
-            <hr />
-            <div style={{ padding: "10px" }}>
-              <ReleaseDates data={data} />
-            </div>
-            <hr />
-            <div style={{ padding: "10px" }}>
-              <Overview data={data} />
-            </div>
-            <hr />
-            <div style={{ padding: "10px" }}>
-              <Trailer data={data} />
-            </div>
-            <hr />
-            <div style={{ padding: "10px" }}>
-              <Similar data={data} />
-            </div>
-            <div style={{ padding: "10px" }}>
+          {/* <div style={{ padding: "10px 10px 40px 10px" }}>
+              
               <Recommended data={data} />
-            </div>
-            <hr />
-            <div style={{ padding: "10px" }}>
-              <Credits data={data} />
-            </div>
-            <hr />
-            <div style={{ padding: "10px" }}>
+              <Credits data={data} />            
               <ExternalLinks data={data} />
-            </div>
-            <hr />
-          </div>
+          </div> */}
         </div>
       )}
     </div>
