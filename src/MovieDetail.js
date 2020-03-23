@@ -16,7 +16,8 @@ import {
   HomeOutlined
 } from "@ant-design/icons";
 import { useDataApi } from "./useDataApi";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
+import "./styles.css";
 
 const { Paragraph } = Typography;
 
@@ -106,10 +107,7 @@ function Ratings({ data }) {
   } = data;
   return (
     <>
-      <h4 className="d-flex align-items-center">
-        <i className="bx bx-star pr-2" />
-        Ratings
-      </h4>
+      <h4 className="detail-section-header">Ratings</h4>
       <div style={{ display: "" }}>
         {imdb_rating_avg && (
           <div>
@@ -446,10 +444,10 @@ function MovieDetail() {
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
         <div
-          className="container-fluid"
+          className="container"
           style={{
             maxWidth: "1000px",
-            background: "linear-gradient(0deg,#222222 0%, #000000 50%)",
+            background: "linear-gradient(0deg,#444 0%, #111 50%)",
             color: "white"
             // overflow: "hidden"
           }}
@@ -457,25 +455,17 @@ function MovieDetail() {
           <div className="row content-wrap" style={{}}>
             <div // bg image
               style={{
-                // zIndex: "0",
-                marginTop: "-50px",
                 minWidth: "100%",
                 height: "300px",
-                // height: "auto",
                 backgroundImage: `url(${data.backdrop_url})`,
                 // objectFit: "contain"
-                // backgroundPosition: "center",
                 backgroundPosition: "center 25%",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                // borderRadius: "5px",
-                // display: "flex",
-                // justifyContent: "space-around",
-                // textAlign: "center"
                 boxShadow: "inset 0px -31px 58px 0px rgba(0,0,0,1)"
               }}
             />
-            <div className="col-12 d-flex" style={{ marginTop: "-40px" }}>
+            <div className="col-12 d-flex pl-4" style={{ marginTop: "-45px" }}>
               <div // poster image
                 style={{
                   minWidth: "92px",
@@ -487,59 +477,69 @@ function MovieDetail() {
                   borderRadius: "4px"
                 }}
               />
-              <div className="flex-column">
+              <div className="flex-column pl-3">
                 <h1
+                  className="mb-3"
                   style={{
                     fontSize: "22px",
                     color: "#cdcdcd"
-                    // textShadow: "2px 2px 4px #efefef"
                   }}
                 >
                   {data.title}
                 </h1>
-                <div
-                  style={{
-                    paddingLeft: "1rem",
-                    paddingTop: "0.25rem"
-                  }}
-                >
-                  {data.year && (
-                    <div>
-                      <span class="badge badge-light">Year</span> {data.year}
-                    </div>
-                  )}
-                  {data.runtime && (
-                    <div>
-                      <span class="badge badge-light">Runtime</span>{" "}
-                      {data.runtime}
-                    </div>
-                  )}
-                  {data.certification && (
-                    <div>
-                      <span class="badge badge-light">Certification</span>{" "}
-                      {data.certification}
-                    </div>
-                  )}
-                  {data.genres && (
-                    <div>
-                      <span class="badge badge-light">Genres</span>{" "}
-                      {data.genres.join(", ")}
-                    </div>
-                  )}
+                <div className="w-75 mb-3">
+                  <div className="d-flex justify-content-between mb-2">
+                    {data.year && (
+                      <div>
+                        <span class="badge badge-pill badge-light">
+                          {data.year}
+                        </span>
+                      </div>
+                    )}
+                    {data.runtime && (
+                      <div>
+                        <span class="badge badge-pill badge-light">
+                          {data.runtime}m
+                        </span>
+                      </div>
+                    )}
+                    {data.certification && (
+                      <div>
+                        <span class="badge badge-pill badge-light">
+                          {data.certification}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="d-flex justify-content-start">
+                    {data.genres &&
+                      data.genres.map(genre => {
+                        return (
+                          <div className="pr-2">
+                            <span class="badge badge-secondary">{genre}</span>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
+            </div>
+
+            <div classname="col-12 d-flex">
+              <Ratings data={data} />
             </div>
           </div>
           {/* end row content-wrap */}
 
+          {/* <div className="mb-5">OLD<div> */}
           <div style={{ padding: "10px 10px 40px 10px" }}>
             <div
               style={{
-                padding: "10px",
-                boxShadow: "0px -66px 20px 20px rgba(0,0,0,0.75)"
+                padding: "10px"
+                // boxShadow: "0px -66px 20px 20px rgba(0,0,0,0.75)"
               }}
             >
-              <Basics data={data} />
+              {/* <Basics data={data} /> */}
             </div>
             <hr />
             <div style={{ padding: "10px" }}>
@@ -579,40 +579,5 @@ function MovieDetail() {
     </div>
   );
 }
-// "imdb_id": "tt3794354",
-// "tmdb_id": "454626",
-// "slug": "sonic-the-hedgehog-tt3794354",
-// "title": "Sonic the Hedgehog",
-// "year": 2020,
-// "runtime": 99,
-// "genres": [
-//     "Action",
-//     "Science Fiction",
-//     "Comedy",
-//     "Family"
-// ],
-// "certification": "PG",
-// "imdb_rating_avg": "6.8",
-// "imdb_rating_count": 23181,
-// "tmdb_rating_count": 778,
-// "tmdb_rating_avg": "7.2",
-// "is_english": true,
-// "spoken_languages": [
-//     "en-English"
-// ],
-// "tagline": "A Whole New Speed of Hero",
-// "overview": "Based on the global blockbuster videogame franchise from Sega, Sonic the Hedgehog tells the story of the world’s speediest hedgehog as he embraces his new home on Earth. In this live-action adventure comedy, Sonic and his new best friend team up to defend the planet from the evil genius Dr. Robotnik and his plans for world domination.",
-// "budget": 85000000,
-// "revenue": 265493652,
-// "theatrical_release": "2020-02-14",
-// "digital_release": null,
-// "physical_release": null,
-// "tv_release": null,
-// "poster_url": "https://image.tmdb.org/t/p/w154/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg",
-// "backdrop_url": "https://image.tmdb.org/t/p/w780/qonBhlm0UjuKX2sH7e73pnG0454.jpg",
-// "trailer_url": "https://www.youtube.com/watch?v=szby7ZHLnkA",
-// "homepage_url": "",
-// "created_at": "2020-02-22T18:52:47.043211",
-// "updated_at": "2020-03-08T20:34:03.632105"
 
 export { MovieDetail };
