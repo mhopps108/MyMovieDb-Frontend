@@ -45,7 +45,13 @@ function List() {
   }, [state, listSlug]);
 
   return (
-    <div className="container-fluid">
+    <div
+      className="container-fluid"
+      style={{
+        background: "linear-gradient(0deg,#333 0%, #111 90%)",
+        color: "white"
+      }}
+    >
       <div className="row sticky-top">
         <div
           className="col-12 d-flex justify-content-between align-items-center py-1 px-2 mb-2"
@@ -68,9 +74,9 @@ function List() {
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
-        <div className="row m-auto">
+        <div className="row mx-auto">
           {(movielistitems || []).map(movie => (
-            <div className="col-xs-12 col-md-6 p-1">
+            <div className="col-xs-12 col-md-6 p-1 mb-2">
               <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
             </div>
           ))}
