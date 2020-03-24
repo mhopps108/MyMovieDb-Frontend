@@ -126,21 +126,27 @@ function Basics({ data }) {
         <h1
           className="mb-3"
           style={{
-            fontSize: "22px",
-            color: "#cdcdcd"
+            fontSize: "24px",
+            color: "#efefef"
           }}
         >
           {title}
         </h1>
-        <div className="w-75">
-          <div className="d-flex mb-3">
+        <div
+          className="w-75 d-flex justify-content-start"
+          style={{
+            fontSize: "16px"
+            // color: "#cdcdcd"
+          }}
+        >
+          <div className="d-flex flex-column pr-4 mb-3">
             {year && (
-              <div className="pr-4">
+              <div className="pb-2">
                 <span class="badge badge-pill badge-light">{year}</span>
               </div>
             )}
             {runtime && (
-              <div className="pr-4">
+              <div className="pb-2">
                 <span class="badge badge-pill badge-light">{runtime}m</span>
               </div>
             )}
@@ -152,11 +158,11 @@ function Basics({ data }) {
               </div>
             )}
           </div>
-          <div className="d-flex justify-content-start">
+          <div className="d-flex flex-column justify-content-start">
             {genres &&
               genres.map(genre => {
                 return (
-                  <div className="pr-3">
+                  <div className="pb-2">
                     <span class="badge badge-secondary">{genre}</span>
                   </div>
                 );
