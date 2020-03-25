@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 // import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { YoutubeOutlined, HomeOutlined } from "@ant-design/icons";
 import { useDataApi } from "./useDataApi";
 // import "antd/dist/antd.css";
@@ -53,6 +53,10 @@ function MovieDetail() {
               style={{ marginTop: "-40px" }}
             >
               <Basics data={data} />
+            </div>
+
+            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+              <RatingsNew data={data} />
             </div>
 
             <div className="col-12 d-flex pl-4 pb-5 flex-column">
@@ -167,6 +171,77 @@ function Basics({ data }) {
                   </div>
                 );
               })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function RatingsNew({ data }) {
+  const {
+    imdb_rating_avg,
+    imdb_rating_count,
+    tmdb_rating_avg,
+    tmdb_rating_count
+  } = data;
+
+  return (
+    <>
+      {/* <h4 className="detail-section-header">Ratings</h4> */}
+
+      <div className="d-flex flex-row" style={{ fontSize: "1rem" }}>
+        <div className="d-flex w-50 p-0 mb-3 m-0 align-items-center">
+          <div
+            className="mr-2"
+            style={{
+              color: "white",
+              backgroud: "#222",
+              border: "1px solid white",
+              borderRadius: "5px",
+              padding: "6px 8px"
+            }}
+          >
+            IMDb
+          </div>
+          <div className="d-flex flex-column">
+            <div className="d-flex flex-row align-items-center" style={{}}>
+              {imdb_rating_avg}
+              <div className="ml-1" style={{ fontSize: "0.7rem" }}>
+                /10
+              </div>
+            </div>
+
+            <div classname="" style={{ fontSize: "0.75rem" }}>
+              {`${imdb_rating_count} votes`}
+            </div>
+          </div>
+        </div>
+
+        <div className="d-flex w-50 p-0 mb-3 m-0 align-items-center">
+          <div
+            className="mr-2"
+            style={{
+              color: "white",
+              backgroud: "#222",
+              border: "1px solid white",
+              borderRadius: "5px",
+              padding: "6px 5px"
+            }}
+          >
+            TMDb
+          </div>
+          <div className="d-flex flex-column">
+            <div className="d-flex flex-row align-items-center" style={{}}>
+              {tmdb_rating_avg}
+              <div className="ml-1" style={{ fontSize: "0.7rem" }}>
+                /10
+              </div>
+            </div>
+
+            <div classname="" style={{ fontSize: "0.75rem" }}>
+              {`${tmdb_rating_count} votes`}
+            </div>
           </div>
         </div>
       </div>
