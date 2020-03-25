@@ -55,39 +55,35 @@ function MovieDetail() {
               <Basics data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
-              <RatingsNew data={data} />
-            </div>
-
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <Ratings data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <ReleaseDates data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <Overview data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <Trailer data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <Similar data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <Recommended data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <Credits data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-5 flex-column">
+            <div className="col-12 d-flex pl-4 pb-4 flex-column">
               <ExternalLinks data={data} />
             </div>
           </div>
@@ -178,7 +174,7 @@ function Basics({ data }) {
   );
 }
 
-function RatingsNew({ data }) {
+function Ratings({ data }) {
   const {
     imdb_rating_avg,
     imdb_rating_count,
@@ -188,16 +184,16 @@ function RatingsNew({ data }) {
 
   return (
     <>
-      {/* <h4 className="detail-section-header">Ratings</h4> */}
+      <h4 className="detail-section-header">Ratings</h4>
 
       <div className="d-flex flex-row" style={{ fontSize: "1rem" }}>
         <div className="d-flex w-50 p-0 mb-3 m-0 align-items-center">
           <div
             className="mr-2"
             style={{
-              color: "white",
+              color: "#ccc",
               backgroud: "#222",
-              border: "1px solid white",
+              border: "1px solid #444",
               borderRadius: "5px",
               padding: "6px 8px"
             }}
@@ -212,7 +208,7 @@ function RatingsNew({ data }) {
               </div>
             </div>
 
-            <div classname="" style={{ fontSize: "0.75rem" }}>
+            <div classname="" style={{ color: "#aaa", fontSize: "0.75rem" }}>
               {`${imdb_rating_count} votes`}
             </div>
           </div>
@@ -222,9 +218,9 @@ function RatingsNew({ data }) {
           <div
             className="mr-2"
             style={{
-              color: "white",
+              color: "#ccc",
               backgroud: "#222",
-              border: "1px solid white",
+              border: "1px solid #444",
               borderRadius: "5px",
               padding: "6px 5px"
             }}
@@ -249,41 +245,6 @@ function RatingsNew({ data }) {
   );
 }
 
-function Ratings({ data }) {
-  const {
-    imdb_rating_avg,
-    imdb_rating_count,
-    tmdb_rating_avg,
-    tmdb_rating_count
-  } = data;
-
-  return (
-    <>
-      <h4 className="detail-section-header">Ratings</h4>
-      <div style={{ display: "" }}>
-        {imdb_rating_avg && (
-          <div>
-            IMDb {imdb_rating_avg}
-            <small className="pl-1">{"/10"}</small>{" "}
-            <small className="pl-2">
-              {imdb_rating_count && `${imdb_rating_count} votes`}
-            </small>{" "}
-          </div>
-        )}
-        {tmdb_rating_avg && (
-          <div>
-            TMDb {tmdb_rating_avg}
-            <small className="pl-1">{"/10"}</small>{" "}
-            <small className="pl-2">
-              {tmdb_rating_count && `${tmdb_rating_count} votes`}
-            </small>{" "}
-          </div>
-        )}
-      </div>
-    </>
-  );
-}
-
 function ReleaseDates({ data }) {
   const {
     theatrical_release,
@@ -292,18 +253,91 @@ function ReleaseDates({ data }) {
     tv_release
   } = data;
 
+  // const Release = rd => {
+  //   return <div>{rd}</div>;
+  // };
+
   return (
     <>
       <h4 className="detail-section-header">Release Dates</h4>
       <div>
-        {theatrical_release && <div>Theatrical: {theatrical_release}</div>}
-        {digital_release && <div>Digital: {digital_release}</div>}
-        {physical_release && <div>Physical: {physical_release}</div>}
+        {theatrical_release && (
+          <div className="d-flex align-items-center mb-3">
+            <div
+              className="mr-2"
+              style={{
+                color: "#ccc",
+                backgroud: "#222",
+                border: "1px solid #444",
+                borderRadius: "5px",
+                padding: "2px 5px"
+              }}
+            >
+              Theatrical
+            </div>
+            {new Date(theatrical_release).toDateString()}
+          </div>
+        )}
+        {digital_release && (
+          <div className="d-flex align-items-center mb-3">
+            <div
+              className="mr-2"
+              style={{
+                color: "#ccc",
+                backgroud: "#222",
+                border: "1px solid #444",
+                borderRadius: "5px",
+                padding: "2px 17px"
+              }}
+            >
+              Digital
+            </div>
+            {new Date(digital_release).toDateString()}
+          </div>
+        )}
+        {physical_release && (
+          <div className="d-flex align-items-center mb-3">
+            <div
+              className="mr-2"
+              style={{
+                color: "#ccc",
+                backgroud: "#222",
+                border: "1px solid #444",
+                borderRadius: "5px",
+                padding: "2px 12px"
+              }}
+            >
+              Physical
+            </div>
+            {new Date(physical_release).toDateString()}
+          </div>
+        )}
         {tv_release && <div>TV: {tv_release}</div>}
       </div>
     </>
   );
 }
+
+// function ReleaseDates({ data }) {
+//   const {
+//     theatrical_release,
+//     digital_release,
+//     physical_release,
+//     tv_release
+//   } = data;
+
+//   return (
+//     <>
+//       <h4 className="detail-section-header">Release Dates</h4>
+//       <div>
+//         {theatrical_release && <div>Theatrical: {theatrical_release}</div>}
+//         {digital_release && <div>Digital: {digital_release}</div>}
+//         {physical_release && <div>Physical: {physical_release}</div>}
+//         {tv_release && <div>TV: {tv_release}</div>}
+//       </div>
+//     </>
+//   );
+// }
 
 function Overview({ data }) {
   const { overview, tagline } = data;
