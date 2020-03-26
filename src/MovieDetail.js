@@ -49,13 +49,13 @@ function MovieDetail() {
               }}
             />
             <div
-              className="col-12 d-flex pl-4 pb-4"
+              className="col-12 d-flex pl-4 pb-5"
               style={{ marginTop: "-40px" }}
             >
               <Basics data={data} />
             </div>
 
-            <div className="col-12 d-flex pl-4 pb-4 flex-column">
+            <div className="col-12 d-flex pl-4 pb-5 flex-column">
               <Ratings data={data} />
             </div>
 
@@ -133,36 +133,34 @@ function Basics({ data }) {
           {title}
         </h1>
         <div
-          className="w-75 d-flex justify-content-start"
+          className="w-75 d-flex flex-column justify-content-start"
           style={{
             fontSize: "16px"
             // color: "#cdcdcd"
           }}
         >
-          <div className="d-flex flex-column pr-4 mb-3">
+          <div className="d-flex flex-row pr-4 mb-3">
             {year && (
-              <div className="pb-2">
-                <span class="badge badge-pill badge-light">{year}</span>
+              <div className="pr-2">
+                <span class="badge badge-light">{year}</span>
               </div>
             )}
             {runtime && (
-              <div className="pb-2">
-                <span class="badge badge-pill badge-light">{runtime}m</span>
+              <div className="pr-2">
+                <span class="badge badge-light">{runtime}m</span>
               </div>
             )}
             {certification && (
               <div className="">
-                <span class="badge badge-pill badge-light">
-                  {certification}
-                </span>
+                <span class="badge badge-light">{certification}</span>
               </div>
             )}
           </div>
-          <div className="d-flex flex-column justify-content-start">
+          <div className="d-flex flex-row justify-content-start">
             {genres &&
               genres.map(genre => {
                 return (
-                  <div className="pb-2">
+                  <div className="pr-2">
                     <span class="badge badge-secondary">{genre}</span>
                   </div>
                 );
