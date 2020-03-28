@@ -27,19 +27,28 @@ export default function App() {
   return (
     // #14181c
     // <div className="App" style={{ maxWidth: "1000px", background: "#222222" }}>
-    <div className="App" style={{ maxWidth: "1000px", margin: "0 auto" }}>
+    <div
+      className="App"
+      style={{
+        maxWidth: "1000px",
+        margin: "0 auto",
+        background: "linear-gradient(0deg,#333 0%, #111 90%)"
+      }}
+    >
       <div
         className="d-flex justify-content-between align-items-center px-2"
         style={{
           // zIndex: "1",
-          height: "50px",
-          borderBottom: "1px solid #f5f6f7",
-          background: "#222"
+          height: "55px",
+          // borderBottom: "1px solid #f5f6f7",
+          // background: "#222"
+          color: "#222",
+          background: "transparent"
         }}
       >
         <h1
           className="p-0 m-0"
-          style={{ fontSize: "1.3rem", fontWeight: 600, color: "#f5f6f7" }}
+          style={{ fontSize: "1.4rem", fontWeight: 600, color: "#cdcdcd" }}
         >
           {"MyMovieDb"}
         </h1>
@@ -58,32 +67,26 @@ export default function App() {
       </div>
 
       <Router>
-        <div>
-          <Switch>
-            <Route path={"/lists/:listSlug"}>
-              <List />
-            </Route>
-            <Route path="/lists">
-              <Lists />
-            </Route>
-            <Route path="/movie/:imdbId">
-              <MovieDetail />
-            </Route>
-            <Route path="/search">
-              <Search />
-            </Route>
-            {/* <Route path="/release-dates">
-              <ReleaseDates />
-            </Route> */}
-            {/* <Route path={["/release-dates/:week", "/release-dates"]}> */}
-            <Route path="/release-dates">
-              <ReleaseDates />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route path={"/lists/:listSlug"}>
+            <List />
+          </Route>
+          <Route path="/lists">
+            <Lists />
+          </Route>
+          <Route path="/movie/:imdbId">
+            <MovieDetail />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/release-dates">
+            <ReleaseDates />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
         <ListsDrawer
           visible={listsDrawerVisible}
           setVisible={setListsDrawerVisible}
@@ -95,8 +98,4 @@ export default function App() {
 
 function Home() {
   return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
 }

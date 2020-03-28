@@ -1,31 +1,9 @@
-import React, { useState, useEffect, useRef, useReducer } from "react";
-import ReactDOM from "react-dom";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
+import React, { useEffect } from "react";
+// import ReactDOM from "react-dom";
+import { Link, useRouteMatch, useParams } from "react-router-dom";
 
-import { Affix, Row } from "antd";
 import { useDataApi } from "./useDataApi";
 import MovieListItem from "./MovieListItem";
-import "antd/dist/antd.css";
-
-// LIST STATE
-// isLoading: false
-// isError: false
-// data: Object
-// name: "Top Rated"
-// slug: "tmdb-top-rated"
-// url: "https://api.themoviedb.org/3/movie/top_rated"
-// source: "TMDb"
-// created_at: "2020-03-11T09:23:36.899391"
-// movie_count: 99
-// last_updated: "2020-03-11T16:40:08.304355"
-// movielistitems: Array[99]
 
 function List() {
   let { listSlug } = useParams();
@@ -48,7 +26,9 @@ function List() {
     <div
       className="container-fluid"
       style={{
-        background: "linear-gradient(0deg,#333 0%, #111 90%)",
+        // background: "linear-gradient(0deg,#333 0%, #111 90%)",
+        background: "linear-gradient(to bottom, #232526, #414345)",
+        // background: ;
         color: "white"
       }}
     >

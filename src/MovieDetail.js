@@ -30,7 +30,8 @@ function MovieDetail() {
           className="container"
           style={{
             maxWidth: "1000px",
-            background: "linear-gradient(0deg,#333 0%, #111 90%)",
+            background: "linear-gradient(0deg,#333 0%, #000 100%)",
+            // background: "linear-gradient(to bottom, #232526, #414345)",
             color: "white"
             // overflow: "hidden"
           }}
@@ -45,7 +46,7 @@ function MovieDetail() {
                 backgroundPosition: "center 25%",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                boxShadow: "inset 0px -31px 58px 0px rgba(0,0,0,1)"
+                boxShadow: "inset 0px 0px 24px 46px rgba(0,0,0,0.8)"
               }}
             />
             <div
@@ -127,7 +128,7 @@ function Basics({ data }) {
           className="mb-3"
           style={{
             fontSize: "24px",
-            color: "#efefef"
+            color: "#eee"
           }}
         >
           {title}

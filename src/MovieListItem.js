@@ -19,15 +19,12 @@ function MovieListItem({ movie }) {
       <div
         className="d-flex p-2 mx-auto"
         style={{
-          background: "#fefefe",
+          background: "#dedede",
           height: "150px",
           minWidth: "350px",
           maxWidth: "400px",
           borderRadius: "4px",
           border: "1px solid rgba(0,0,0,0.2)"
-          // boxShadow: "0 2px 2px 0px rgba(0,0,0,0.25)"
-          // boxShadow:
-          // "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.2)"
         }}
       >
         <div
@@ -44,6 +41,7 @@ function MovieListItem({ movie }) {
             border: "1px solid rgba(0,0,0,0.2)"
           }}
         />
+
         <div className="w-100 pl-3 pt-1 d-flex flex-column justify-content-start">
           <Link to={`/movie/${imdb_id}`}>
             <h6
@@ -77,12 +75,7 @@ function MovieListItem({ movie }) {
             <div className="d-flex">
               {genres &&
                 genres.map(genre => {
-                  return (
-                    <div className="pr-3">
-                      {/* <span class="badge badge-light">{genre}</span> */}
-                      {genre}
-                    </div>
-                  );
+                  return <div className="pr-3">{genre}</div>;
                 })}
             </div>
           </div>
