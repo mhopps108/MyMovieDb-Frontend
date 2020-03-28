@@ -37,16 +37,16 @@ function ListsDrawer({ visible, setVisible }) {
           }}
         >
           <div style={{ paddingBottom: "10px" }}>
-            <h3>
+            <h3 onClick={handelSelect}>
               <Link to="/search">Search</Link>
             </h3>
-            <h3>
+            <h3 onClick={handelSelect}>
               <Link to="/about">Discover</Link>
             </h3>
-            <h3>
-              <Link to="/release-dates/today">Release Dates</Link>
+            <h3 onClick={handelSelect}>
+              <Link to="/release-dates">Release Dates</Link>
             </h3>
-            <h3>
+            <h3 onClick={handelSelect}>
               <Link to="/lists">Lists</Link>
             </h3>
           </div>

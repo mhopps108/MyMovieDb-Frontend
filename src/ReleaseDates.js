@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useReducer } from "react";
-import ReactDOM from "react-dom";
-import { Link, useRouteMatch, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useRouteMatch, useParams, useHistory } from "react-router-dom";
 import { useDataApi } from "./useDataApi";
 import MovieListItem from "./MovieListItem";
 import moment from "moment";
@@ -21,33 +20,42 @@ const endOfWeek = date => {
 };
 
 function ReleaseDates() {
-  let { dateParam } = useParams();
-  const beginningDate = dateParam === "today" ? startOfWeek() : dateParam;
-  // dateParam = beginningDate;
-  const [startDate, setStartDate] = useState(beginningDate);
-  const listUrl = `https://matthewhopps.com/api/movie/?orderby=digital_release&digital_release__gte=${startOfWeek(
-    startDate
-  ).format("YYYY-MM-DD")}&digital_release__lt=${endOfWeek(startDate).format(
-    "YYYY-MM-DD"
-  )}`;
+  let history = useHistory();
+  let match = useRouteMatch("/release-dates/:week");
+  const startWeek = match => {
+    const week = match ? match.params.week : startOfWeek();
+    return moment(week).format("YYYY-MM-DD");
+  };
+  const [startDate, setStartDate] = useState(startWeek);
+  const listUrl =
+    `https://matthewhopps.com/api/movie/` +
+    `?orderby=digital_release` +
+    `&digital_release__gte=${startOfWeek(startDate).format("YYYY-MM-DD")}` +
+    `&digital_release__lt=${endOfWeek(startDate).format("YYYY-MM-DD")}`;
   const [state, setUrl] = useDataApi(listUrl, []);
   const { data, isLoading, isError } = state;
-  const { count, results } = data;
-
-  const twixDateString = (start, end) => {
-    return moment(start)
-      .twix(end, { allDay: true })
-      .format();
+  const { count, results, next, previous } = data;
+  // if over page limit (currently 30), next will give movies 31-60, infinite scroll
+  // reach bottom, check for next and append results
+  const pushWeek = week => {
+    history.push(`/release-dates/${week.format("YYYY-MM-DD")}`);
   };
+  const prevWeek = () => pushWeek(moment(startDate).subtract(7, "d"));
+  const nextWeek = () => pushWeek(moment(startDate).add(7, "d"));
 
   useEffect(() => {
     setUrl(listUrl);
-  }, [listUrl, setUrl]);
+  }, [setUrl, startDate, listUrl]);
 
   useEffect(() => {
-    console.log(`Release Date state data`);
-    console.log(state);
-  }, [state]);
+    setStartDate(startWeek(match));
+  }, [match]);
+
+  // useEffect(() => {
+  //   console.log(`Release Date state data`);
+  //   console.log(state);
+  //   console.log(startDate);
+  // }, [state, startDate]);
 
   return (
     <div
@@ -71,26 +79,17 @@ function ReleaseDates() {
         >
           <div>Release Dates</div>
           <div>
-            <div
-              className="btn"
-              style={{ border: "none" }}
-              onClick={() => setStartDate(moment(startDate).subtract(7, "d"))}
-            >
+            <div className="btn" style={{ border: "none" }} onClick={prevWeek}>
               {"<"}
             </div>
             <div
               className="btn"
               style={{ border: "none", fontSize: "1.1rem", fontWeight: 500 }}
-              onClick={() => setStartDate(startOfWeek())}
+              onClick={() => pushWeek(startOfWeek())}
             >
               {twixDateString(startOfWeek(startDate), endOfWeek(startDate))}
             </div>
-            <div
-              className="btn"
-              style={{ border: "none" }}
-              size=""
-              onClick={() => setStartDate(moment(startDate).add(7, "d"))}
-            >
+            <div className="btn" style={{ border: "none" }} onClick={nextWeek}>
               {">"}
             </div>
           </div>
@@ -101,7 +100,7 @@ function ReleaseDates() {
       {isError && <p>Error</p>}
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
-        <div className="row mx-auto">
+        <div className="row">
           {(results || []).map(movie => (
             <div className="col-xs-12 col-md-6 p-1 mb-2">
               <MovieListItem key={movie.imdb_id} movie={movie} />

@@ -17,7 +17,7 @@ function MovieListItem({ movie }) {
   return (
     <>
       <div
-        className="d-flex p-2"
+        className="d-flex p-2 mx-auto"
         style={{
           background: "#fefefe",
           height: "150px",
