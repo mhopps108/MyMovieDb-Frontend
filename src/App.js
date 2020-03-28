@@ -15,6 +15,7 @@ import { Button, Icon } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { Lists } from "./Lists";
 import { List } from "./List";
+import { ReleaseDates } from "./ReleaseDates";
 import { ListsDrawer } from "./ListsDrawer";
 import { MovieDetail } from "./MovieDetail";
 import { Search } from "./Search";
@@ -71,8 +72,8 @@ export default function App() {
             <Route path="/search">
               <Search />
             </Route>
-            <Route path="/about">
-              <About />
+            <Route path="/release-dates">
+              <ReleaseDates />
             </Route>
             <Route path="/">
               <Home />

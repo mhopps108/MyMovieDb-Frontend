@@ -1,48 +1,29 @@
 import React, { useState, useEffect, useRef, useReducer } from "react";
 import ReactDOM from "react-dom";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
-
-import { Affix, Row } from "antd";
+import { Link, useRouteMatch, useParams } from "react-router-dom";
 import { useDataApi } from "./useDataApi";
 import MovieListItem from "./MovieListItem";
-import "antd/dist/antd.css";
-
-// LIST STATE
-// isLoading: false
-// isError: false
-// data: Object
-// name: "Top Rated"
-// slug: "tmdb-top-rated"
-// url: "https://api.themoviedb.org/3/movie/top_rated"
-// source: "TMDb"
-// created_at: "2020-03-11T09:23:36.899391"
-// movie_count: 99
-// last_updated: "2020-03-11T16:40:08.304355"
-// movielistitems: Array[99]
 
 function ReleaseDates() {
-  let { listSlug } = useParams();
-
-  const listUrl = `https://www.matthewhopps.com/api/list/${listSlug}/`;
+  // let { listSlug } = useParams();
+  const startDate = "2020-03-01";
+  const endDate = "2020-04-01";
+  const listUrl = `https://matthewhopps.com/api/movie/?orderby=digital_release&digital_release__gte=${startDate}&digital_release__lt=${endDate}`;
+  // const listUrl = `https://www.matthewhopps.com/api/list/${listSlug}/`;
+  // const [state, setUrl] = useDataApi(listUrl, []);
   const [state, setUrl] = useDataApi(listUrl, []);
   const { data, isLoading, isError } = state;
-  const { name, source, movie_count, movielistitems } = data;
+  // const { name, source, movie_count, movielistitems } = data;
+  const { count, results } = data;
 
   useEffect(() => {
     setUrl(listUrl);
-  }, [listSlug, listUrl, setUrl]);
+  }, [listUrl, setUrl]);
 
   useEffect(() => {
-    console.log(`List state data ${listSlug}`);
+    console.log(`Release Date state data`);
     console.log(state);
-  }, [state, listSlug]);
+  }, [state]);
 
   return (
     <div
@@ -64,10 +45,8 @@ function ReleaseDates() {
               "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2)"
           }}
         >
-          <div>
-            {source} • {name}
-          </div>
-          <div>#{movie_count}</div>
+          <div>Release Dates</div>
+          <div>#{count}</div>
         </div>
       </div>
 
@@ -75,9 +54,9 @@ function ReleaseDates() {
       {isLoading && <p>Loading movies...</p>}
       {!isLoading && data && (
         <div className="row mx-auto">
-          {(movielistitems || []).map(movie => (
+          {(results || []).map(movie => (
             <div className="col-xs-12 col-md-6 p-1 mb-2">
-              <MovieListItem key={movie.movie.imdb_id} movie={movie.movie} />
+              <MovieListItem key={movie.imdb_id} movie={movie} />
             </div>
           ))}
         </div>
