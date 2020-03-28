@@ -23,7 +23,7 @@ const endOfWeek = date => {
 function ReleaseDates() {
   let { dateParam } = useParams();
   const beginningDate = dateParam === "today" ? startOfWeek() : dateParam;
-  dateParam = beginningDate;
+  // dateParam = beginningDate;
   const [startDate, setStartDate] = useState(beginningDate);
   const listUrl = `https://matthewhopps.com/api/movie/?orderby=digital_release&digital_release__gte=${startOfWeek(
     startDate
