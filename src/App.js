@@ -72,7 +72,10 @@ export default function App() {
             <Route path="/search">
               <Search />
             </Route>
-            <Route path="/release-dates">
+            <Route path="/release-dates/today">
+              <ReleaseDates />
+            </Route>
+            <Route path="/release-dates/:beginningDate">
               <ReleaseDates />
             </Route>
             <Route path="/">

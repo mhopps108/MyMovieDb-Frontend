@@ -3,18 +3,42 @@ import ReactDOM from "react-dom";
 import { Link, useRouteMatch, useParams } from "react-router-dom";
 import { useDataApi } from "./useDataApi";
 import MovieListItem from "./MovieListItem";
+import moment from "moment";
+import twix from "twix";
+
+const twixDateString = (start, end) => {
+  return moment(start)
+    .twix(end, { allDay: true })
+    .format();
+};
+
+const startOfWeek = date => {
+  return (moment(date) || moment()).startOf("week");
+};
+
+const endOfWeek = date => {
+  return (moment(date) || moment()).endOf("week");
+};
 
 function ReleaseDates() {
-  // let { listSlug } = useParams();
-  const startDate = "2020-03-01";
-  const endDate = "2020-04-01";
-  const listUrl = `https://matthewhopps.com/api/movie/?orderby=digital_release&digital_release__gte=${startDate}&digital_release__lt=${endDate}`;
-  // const listUrl = `https://www.matthewhopps.com/api/list/${listSlug}/`;
-  // const [state, setUrl] = useDataApi(listUrl, []);
+  let { dateParam } = useParams();
+  const beginningDate = dateParam === "today" ? startOfWeek() : dateParam;
+  dateParam = beginningDate;
+  const [startDate, setStartDate] = useState(beginningDate);
+  const listUrl = `https://matthewhopps.com/api/movie/?orderby=digital_release&digital_release__gte=${startOfWeek(
+    startDate
+  ).format("YYYY-MM-DD")}&digital_release__lt=${endOfWeek(startDate).format(
+    "YYYY-MM-DD"
+  )}`;
   const [state, setUrl] = useDataApi(listUrl, []);
   const { data, isLoading, isError } = state;
-  // const { name, source, movie_count, movielistitems } = data;
   const { count, results } = data;
+
+  const twixDateString = (start, end) => {
+    return moment(start)
+      .twix(end, { allDay: true })
+      .format();
+  };
 
   useEffect(() => {
     setUrl(listUrl);
@@ -46,6 +70,30 @@ function ReleaseDates() {
           }}
         >
           <div>Release Dates</div>
+          <div>
+            <div
+              className="btn"
+              style={{ border: "none" }}
+              onClick={() => setStartDate(moment(startDate).subtract(7, "d"))}
+            >
+              {"<"}
+            </div>
+            <div
+              className="btn"
+              style={{ border: "none", fontSize: "1.1rem", fontWeight: 500 }}
+              onClick={() => setStartDate(startOfWeek())}
+            >
+              {twixDateString(startOfWeek(startDate), endOfWeek(startDate))}
+            </div>
+            <div
+              className="btn"
+              style={{ border: "none" }}
+              size=""
+              onClick={() => setStartDate(moment(startDate).add(7, "d"))}
+            >
+              {">"}
+            </div>
+          </div>
           <div>#{count}</div>
         </div>
       </div>
