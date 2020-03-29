@@ -46,7 +46,8 @@ function MovieDetail() {
                 backgroundPosition: "center 25%",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                boxShadow: "inset 0px 0px 24px 46px rgba(0,0,0,0.8)"
+                // boxShadow: "inset 0px 0px 24px 46px rgba(0,0,0,0.8)"
+                boxShadow: "inset 0px -40px 20px 2px rgba(0,0,0,0.85)"
               }}
             />
             <div
