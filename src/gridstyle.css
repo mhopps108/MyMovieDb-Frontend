@@ -1,0 +1,100 @@
+/* 
+<div className="App">
+  <h1>The grid-area Property</h1>
+  <div class="grid-container">
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="toolbar">Toolbar</div>
+    <div class="main">Main</div>
+    <div class="footer">Footer</div>
+  </div>
+</div>
+*/
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.header {
+  grid-area: header;
+}
+.sidebar {
+  grid-area: sidebar;
+  display: none;
+}
+.toolbar {
+  grid-area: toolbar;
+}
+
+.main {
+  grid-area: main;
+  height: 300px;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "toolbar"
+    "main"
+    "footer";
+  grid-gap: 10px;
+  background-color: #2196f3;
+  padding: 10px;
+  max-width: 1000px;
+  /* height: 250px; */
+  grid-template-rows: 50px 45px auto 45px;
+  grid-template-columns: 1fr;
+  /* grid-template-columns: minmax(150px, 200px) 1fr; */
+}
+
+@media only screen and (min-width: 768px) {
+  .footer {
+    display: none;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "toolbar"
+      "main";
+    grid-gap: 10px;
+    background-color: #2196f3;
+    padding: 10px;
+    max-width: 1000px;
+    grid-template-rows: 50px 45px 1fr;
+    grid-template-columns: 100%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .sidebar {
+    display: block;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "sidebar toolbar"
+      "sidebar main"
+      "sidebar main";
+    grid-gap: 10px;
+    background-color: #2196f3;
+    padding: 10px;
+    max-width: 1000px;
+    grid-template-rows: 50px 45px auto 45px;
+    grid-template-columns: 150px 1fr;
+  }
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 0px 0;
+  font-size: 30px;
+}
