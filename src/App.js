@@ -21,20 +21,19 @@ import { MovieDetail } from "./MovieDetail";
 import { Search } from "./Search";
 import "./styles.css";
 
+const styles = {
+  app: {
+    maxWidth: "1000px",
+    margin: "0 auto",
+    background: "linear-gradient(0deg,#333 0%, #111 90%)" // #14181c
+  }
+};
+
 export default function App() {
   const [listsDrawerVisible, setListsDrawerVisible] = useState(false);
 
   return (
-    // #14181c
-    // <div className="App" style={{ maxWidth: "1000px", background: "#222222" }}>
-    <div
-      className="App"
-      style={{
-        maxWidth: "1000px",
-        margin: "0 auto",
-        background: "linear-gradient(0deg,#333 0%, #111 90%)"
-      }}
-    >
+    <div className="App" style={styles.app}>
       <div
         className="d-flex justify-content-between align-items-center px-2"
         style={{
